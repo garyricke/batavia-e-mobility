@@ -1,0 +1,1995 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Roll Smart, Ride Safe — Batavia E-Mobility Guide for Kids & Parents</title>
+<meta name="description" content="A friendly, plain-language guide to the City of Batavia's e-mobility ordinance (2026-010). E-bikes, e-scooters, skateboards, and safety rules for kids and parents." />
+<meta name="theme-color" content="#FCF3DC" />
+
+<!-- Fonts: Bagel Fat One (chunky display), Fraunces (warm serif body), JetBrains Mono (data) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BATAVIA E-MOBILITY ZINE — ROLL SMART, RIDE SAFE
+   Aesthetic: warm risograph print + Pixar polaroids
+   ============================================================ */
+
+:root{
+  /* Risograph-inspired palette */
+  --paper: #FCF3DC;
+  --paper-2: #F7E7B8;
+  --paper-3: #FDE6C8;
+  --ink: #14213D;
+  --ink-soft: #2A3A5F;
+  --ink-mute: #6B7390;
+  --marigold: #F5A623;
+  --marigold-deep: #D88A0A;
+  --stop: #E63946;
+  --stop-deep: #B82E3A;
+  --park: #2A9D5F;
+  --park-deep: #1F7B47;
+  --sky: #4E89F0;
+  --sky-deep: #2E68D0;
+  --pink: #FF6FB5;
+  --plum: #7B3F9E;
+
+  /* Type */
+  --display: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
+  --serif: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
+  --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Halftone — subtle dot noise overlay */
+  --halftone:
+    radial-gradient(circle at 50% 50%, rgba(20,33,61,0.06) 0.6px, transparent 0.7px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 14, "SOFT" 100;
+  font-size:18px;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+
+/* Paper texture overlay — gives the page a printed-zine feel */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background:
+    var(--halftone),
+    var(--halftone);
+  background-size:6px 6px, 9px 9px;
+  background-position:0 0, 3px 3px;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:multiply;
+  opacity:0.7;
+}
+
+::selection{background:var(--marigold);color:var(--ink)}
+
+a{color:var(--sky-deep);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--stop)}
+
+h1,h2,h3,h4{font-family:var(--display); font-weight:400; line-height:1; letter-spacing:-0.01em; margin:0; color:var(--ink)}
+h1{font-size:clamp(3rem, 9vw, 7.5rem)}
+h2{font-size:clamp(2.2rem, 5.5vw, 4.5rem); letter-spacing:-0.02em}
+h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
+h4{font-family:var(--serif); font-weight:800; font-size:1.1rem; text-transform:uppercase; letter-spacing:0.08em; font-variation-settings:"opsz" 14, "SOFT" 50}
+
+p{margin:0 0 1em}
+strong{font-weight:800; color:var(--ink)}
+
+.mono{font-family:var(--mono); font-feature-settings:"tnum","zero"; font-weight:700}
+
+/* Layout container */
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px; position:relative; z-index:2}
+.narrow{max-width:780px}
+
+/* ============================================================
+   STAMPS, RIBBONS, DECORATIVE BITS
+   ============================================================ */
+
+.stamp{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  border:2px solid currentColor;
+  padding:6px 12px;
+  border-radius:4px;
+  transform:rotate(-2deg);
+  background:transparent;
+}
+.stamp--marigold{color:var(--marigold-deep); background:rgba(245,166,35,0.12)}
+.stamp--park{color:var(--park-deep); background:rgba(42,157,95,0.12)}
+.stamp--stop{color:var(--stop-deep); background:rgba(230,57,70,0.12)}
+.stamp--sky{color:var(--sky-deep); background:rgba(78,137,240,0.12)}
+
+.section-num{
+  font-family:var(--display);
+  font-size:clamp(4rem, 9vw, 7rem);
+  line-height:0.9;
+  color:var(--marigold);
+  -webkit-text-stroke:2px var(--ink);
+  text-stroke:2px var(--ink);
+  display:inline-block;
+  transform:rotate(-4deg);
+  text-shadow:4px 4px 0 var(--ink);
+  padding-right:12px;
+}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--stop);
+  display:inline-flex;
+  align-items:center;
+  gap:.6em;
+}
+.eyebrow::before{content:""; width:1.6em; height:2px; background:currentColor; display:inline-block}
+
+/* Wavy hand-drawn underline using SVG bg */
+.underline-wavy{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'><path d='M0 6 Q 15 0 30 6 T 60 6 T 90 6 T 120 6' fill='none' stroke='%23E63946' stroke-width='3' stroke-linecap='round'/></svg>");
+  background-repeat:no-repeat;
+  background-size:100% 8px;
+  background-position:0 100%;
+  padding-bottom:6px;
+}
+
+/* Polaroid frame — wraps illustration images with a printed feel */
+.polaroid{
+  background:#fff;
+  padding:14px 14px 60px;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.08),
+    0 8px 24px -8px rgba(20,33,61,.25),
+    0 24px 60px -20px rgba(20,33,61,.18);
+  display:inline-block;
+  position:relative;
+  border-radius:2px;
+}
+.polaroid img{display:block; width:100%; height:auto; border-radius:1px}
+.polaroid .caption{
+  position:absolute; left:0; right:0; bottom:14px;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:.78rem;
+  letter-spacing:0.06em;
+  color:var(--ink-soft);
+  font-weight:500;
+}
+/* Tape corner — pure CSS */
+.polaroid::before, .polaroid::after{
+  content:"";
+  position:absolute;
+  width:90px; height:28px;
+  background:rgba(245,166,35,0.55);
+  top:-12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  z-index:3;
+  border-left:1px dashed rgba(20,33,61,.18);
+  border-right:1px dashed rgba(20,33,61,.18);
+}
+.polaroid::before{left:18px; transform:rotate(-6deg)}
+.polaroid::after{right:18px; transform:rotate(5deg); background:rgba(255,111,181,0.55)}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:var(--paper);
+  border-bottom:3px solid var(--ink);
+  box-shadow:0 4px 0 var(--marigold), 0 6px 24px -8px rgba(20,33,61,.18);
+}
+.topbar__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px;
+  padding:14px 24px;
+  max-width:1180px; margin:0 auto;
+}
+.brand{
+  display:flex; align-items:center; gap:14px;
+  text-decoration:none; color:var(--ink);
+}
+.brand__seal{
+  width:46px; height:46px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, var(--marigold), var(--marigold-deep) 70%, var(--ink) 100%);
+  border:2px solid var(--ink);
+  display:grid; place-items:center;
+  font-family:var(--display); font-size:1.5rem; color:var(--ink);
+  box-shadow:inset 0 0 0 3px var(--paper);
+  flex-shrink:0;
+}
+.brand__name{font-family:var(--display); font-size:1.15rem; line-height:1; letter-spacing:-0.01em}
+.brand__sub{display:block; font-family:var(--mono); font-size:.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px; font-weight:500}
+
+.nav{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.nav a{
+  font-family:var(--serif);
+  font-weight:700;
+  font-variation-settings:"opsz" 14, "SOFT" 30;
+  font-size:.95rem;
+  text-decoration:none;
+  color:var(--ink);
+  padding:8px 12px;
+  border-radius:8px;
+  transition:background .15s ease, color .15s ease, transform .15s ease;
+}
+.nav a:hover{background:var(--ink); color:var(--marigold); transform:translateY(-1px)}
+
+.menu-btn{display:none}
+
+@media (max-width:780px){
+  .nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); flex-direction:column; align-items:stretch; padding:12px; border-bottom:3px solid var(--ink); gap:0}
+  .nav.is-open{display:flex}
+  .nav a{padding:14px 12px; border-radius:0; border-bottom:1px dashed var(--ink-mute)}
+  .menu-btn{display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; background:var(--ink); color:var(--marigold); border:0; border-radius:8px; cursor:pointer; font-family:var(--mono); font-size:1.4rem}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero{
+  position:relative;
+  padding:48px 0 80px;
+  overflow:hidden;
+}
+.hero__bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(245,166,35,0.25), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 80%, rgba(78,137,240,0.18), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 90% 90%, rgba(255,111,181,0.18), transparent 70%);
+  pointer-events:none;
+  z-index:-1;
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+@media (max-width:880px){
+  .hero__grid{grid-template-columns:1fr; gap:36px}
+}
+
+.hero__title{
+  position:relative;
+  font-size:clamp(3.4rem, 11vw, 9rem);
+  letter-spacing:-0.03em;
+}
+.hero__title .l1,.hero__title .l2{display:block}
+.hero__title .l1{color:var(--ink); transform:rotate(-1.5deg); transform-origin:left center}
+.hero__title .l2{color:var(--stop); transform:rotate(1deg) translateX(8%); margin-top:-.05em}
+.hero__title .amp{
+  display:inline-block; color:var(--marigold);
+  -webkit-text-stroke:3px var(--ink);
+  text-shadow:4px 4px 0 var(--ink);
+}
+
+.hero__sub{
+  font-size:clamp(1.1rem, 1.7vw, 1.35rem);
+  line-height:1.45;
+  color:var(--ink-soft);
+  max-width:30em;
+  margin:24px 0 28px;
+  font-variation-settings:"opsz" 24, "SOFT" 60;
+}
+.hero__meta{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+
+.hero__art{position:relative; justify-self:end; max-width:560px; width:100%}
+.hero__art .polaroid{transform:rotate(2deg)}
+.hero__art .badge{
+  position:absolute;
+  bottom:-30px; left:-30px;
+  width:160px; height:160px;
+  background:var(--stop);
+  color:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:50%;
+  display:grid; place-items:center; text-align:center;
+  font-family:var(--display); font-size:1.6rem; line-height:.95;
+  padding:10px;
+  transform:rotate(-12deg);
+  box-shadow:6px 6px 0 var(--ink);
+  z-index:5;
+}
+.hero__badge-line{display:block; font-family:var(--mono); font-size:.6rem; letter-spacing:0.18em; opacity:.85; font-weight:700; margin-top:4px}
+@media (max-width:560px){
+  .hero__art .badge{width:120px; height:120px; font-size:1.2rem; bottom:-18px; left:-12px}
+}
+
+/* Scroll cue */
+.scroll-cue{
+  display:inline-flex; align-items:center; gap:10px;
+  margin-top:36px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--ink-soft);
+  text-decoration:none;
+}
+.scroll-cue__arrow{
+  display:inline-block; width:36px; height:36px;
+  border:2px solid var(--ink); border-radius:50%;
+  background:var(--paper);
+  position:relative;
+  animation:bob 2s ease-in-out infinite;
+}
+.scroll-cue__arrow::after{
+  content:""; position:absolute; left:50%; top:42%;
+  width:10px; height:10px;
+  border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+
+section{padding:88px 0; position:relative}
+section + section{border-top:2px dashed rgba(20,33,61,.18)}
+
+.section-head{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:24px;
+  align-items:end;
+  margin-bottom:48px;
+}
+.section-head .eyebrow{margin-bottom:14px}
+.section-head h2{line-height:.95}
+
+/* ============================================================
+   §1 — WHY / INTRO
+   ============================================================ */
+
+.intro__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:start;
+}
+@media (max-width:780px){.intro__grid{grid-template-columns:1fr; gap:24px}}
+.intro__lead{
+  font-size:clamp(1.3rem, 2vw, 1.7rem);
+  line-height:1.35;
+  font-variation-settings:"opsz" 40, "SOFT" 80;
+  color:var(--ink);
+}
+.intro__lead .drop{
+  float:left;
+  font-family:var(--display);
+  font-size:5.5em;
+  line-height:.78;
+  padding:.06em .08em 0 0;
+  color:var(--stop);
+  -webkit-text-stroke:1.5px var(--ink);
+}
+.intro__list{list-style:none; padding:0; margin:0; display:grid; gap:14px}
+.intro__list li{
+  display:flex; align-items:baseline; gap:14px;
+  padding:14px 18px;
+  background:var(--paper-2);
+  border-left:5px solid var(--marigold);
+  border-radius:0 12px 12px 0;
+  font-weight:600;
+  font-variation-settings:"opsz" 18, "SOFT" 50;
+}
+.intro__list li::before{
+  content:""; flex:0 0 12px; height:12px; background:var(--ink); border-radius:50%;
+  transform:translateY(-3px);
+}
+
+/* ============================================================
+   §2 — MEET THE DEVICES
+   ============================================================ */
+
+.devices__banner{
+  margin-bottom:48px;
+  border:3px solid var(--ink);
+  border-radius:24px;
+  overflow:hidden;
+  background:var(--paper-2);
+  box-shadow:8px 8px 0 var(--ink);
+  position:relative;
+}
+.devices__banner img{display:block; width:100%; height:auto}
+.devices__banner .corner-stamp{
+  position:absolute; top:14px; right:14px;
+  background:var(--paper); border:2px solid var(--ink);
+  padding:8px 14px; border-radius:8px;
+  font-family:var(--mono); font-size:.72rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700;
+  transform:rotate(3deg);
+  z-index:2;
+}
+
+.devices__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+@media (max-width:1000px){.devices__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.devices__grid{grid-template-columns:1fr}}
+
+.device-card{
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:24px;
+  position:relative;
+  box-shadow:6px 6px 0 var(--ink);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.device-card:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink)}
+.device-card--sky{background:linear-gradient(180deg, #DDECFF 0%, var(--paper) 80%)}
+.device-card--marigold{background:linear-gradient(180deg, #FFE8C2 0%, var(--paper) 80%)}
+.device-card--plum{background:linear-gradient(180deg, #ECDDFF 0%, var(--paper) 80%)}
+.device-card--stop{background:linear-gradient(180deg, #FFD8DC 0%, var(--paper) 80%)}
+
+.device-card__icon{
+  font-size:3rem; line-height:1;
+  display:inline-block;
+  margin-bottom:14px;
+  filter:drop-shadow(2px 3px 0 var(--ink));
+}
+.device-card h3{margin-bottom:12px}
+.device-card p{font-size:.95rem; color:var(--ink-soft); margin:0 0 10px}
+.device-card .tag{
+  display:inline-block; margin-top:10px;
+  font-family:var(--mono); font-weight:700; font-size:.72rem; letter-spacing:0.12em; text-transform:uppercase;
+  padding:4px 10px; border-radius:6px;
+  background:var(--ink); color:var(--marigold);
+}
+.device-card--stop .tag{background:var(--stop); color:#fff}
+
+/* ============================================================
+   §3 — PICK YOUR RIDE (the interactive)
+   ============================================================ */
+
+.pick{
+  background:var(--ink);
+  color:var(--paper);
+  border-radius:32px;
+  padding:48px clamp(20px,5vw,56px);
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 24px 80px -32px rgba(20,33,61,.5);
+}
+.pick::before{
+  /* halftone dot pattern */
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(252,243,220,0.08) 0.8px, transparent 1px);
+  background-size:8px 8px;
+  pointer-events:none;
+}
+.pick h2{color:var(--paper)}
+.pick .eyebrow{color:var(--marigold)}
+.pick__lede{color:rgba(252,243,220,0.75); max-width:46em; margin-bottom:32px}
+
+.chip-rail{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-bottom:36px;
+  position:relative;
+}
+.chip{
+  appearance:none;
+  background:transparent;
+  border:2px solid rgba(252,243,220,0.3);
+  color:var(--paper);
+  font-family:var(--serif);
+  font-weight:700;
+  font-variation-settings:"opsz" 14, "SOFT" 40;
+  font-size:.95rem;
+  padding:12px 18px;
+  border-radius:99px;
+  cursor:pointer;
+  display:inline-flex; align-items:center; gap:10px;
+  transition:all .18s ease;
+  position:relative;
+}
+.chip:hover{border-color:rgba(252,243,220,0.6); transform:translateY(-1px)}
+.chip:focus-visible{outline:3px solid var(--marigold); outline-offset:3px}
+.chip[aria-pressed="true"]{
+  background:var(--marigold); color:var(--ink); border-color:var(--marigold);
+  box-shadow:0 4px 0 var(--marigold-deep);
+}
+.chip .chip__icon{font-size:1.2em; line-height:1}
+.chip .chip__cls{font-family:var(--mono); font-size:.72rem; font-weight:700; opacity:.7; padding-left:4px; border-left:1px solid currentColor; padding-left:8px; margin-left:2px}
+
+/* The big rules card */
+.rules-card{
+  position:relative;
+  background:var(--paper);
+  color:var(--ink);
+  border-radius:24px;
+  padding:36px clamp(24px,4vw,40px);
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:36px;
+  align-items:start;
+  border:3px solid var(--paper);
+  transition:transform .3s ease, opacity .25s ease;
+}
+@media (max-width:780px){.rules-card{grid-template-columns:1fr; gap:24px}}
+.rules-card.is-flipping{opacity:.4; transform:scale(.985)}
+.rules-card__accent{
+  position:absolute; top:0; left:0; right:0; height:8px;
+  background:var(--marigold);
+  border-radius:24px 24px 0 0;
+}
+.rules-card__device{
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:18px;
+}
+.rules-card__device .ic{
+  font-size:3.4rem; line-height:1;
+  filter:drop-shadow(3px 3px 0 var(--ink));
+}
+.rules-card__title{
+  font-family:var(--display);
+  font-size:clamp(1.8rem, 3vw, 2.6rem);
+  line-height:.95;
+}
+.rules-card__title small{
+  display:block; font-family:var(--mono); font-size:.78rem; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--ink-soft); margin-top:8px; font-weight:700;
+}
+.rules-card__where{
+  font-size:1.05rem;
+  font-variation-settings:"opsz" 24, "SOFT" 60;
+  color:var(--ink-soft);
+  margin-top:14px;
+}
+.rules-card__tip{
+  margin-top:18px;
+  padding:14px 18px;
+  background:var(--paper-3);
+  border-left:5px solid var(--stop);
+  border-radius:0 12px 12px 0;
+  font-style:italic;
+  font-size:.98rem;
+}
+.rules-card__tip strong{font-style:normal}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+}
+.stat{
+  background:var(--paper-2);
+  border:2px solid var(--ink);
+  border-radius:14px;
+  padding:18px;
+  position:relative;
+}
+.stat__label{
+  font-family:var(--mono); font-weight:700;
+  font-size:.7rem; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.stat__value{
+  font-family:var(--display);
+  font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+  line-height:1;
+  margin-top:6px;
+  color:var(--ink);
+}
+.stat--ok .stat__value{color:var(--park-deep)}
+.stat--no .stat__value{color:var(--stop)}
+.stat__value .unit{font-family:var(--serif); font-weight:700; font-size:.5em; opacity:.65; margin-left:6px; font-variation-settings:"opsz" 14}
+
+/* ============================================================
+   §4 — WHERE TO RIDE
+   ============================================================ */
+
+.where__grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:36px;
+  align-items:start;
+}
+@media (max-width:880px){.where__grid{grid-template-columns:1fr}}
+.where__map .polaroid{transform:rotate(-1.5deg); width:100%}
+
+.where__rules{display:grid; gap:14px}
+.where__rule{
+  display:grid;
+  grid-template-columns:48px 1fr auto;
+  gap:14px;
+  align-items:center;
+  padding:18px 22px;
+  background:var(--paper);
+  border:2px solid var(--ink);
+  border-radius:14px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.where__rule--ok{border-left:6px solid var(--park)}
+.where__rule--no{border-left:6px solid var(--stop)}
+.where__rule--maybe{border-left:6px solid var(--marigold)}
+.where__rule .where__ic{font-size:1.8rem; line-height:1; text-align:center}
+.where__rule h4{font-family:var(--display); font-size:1.15rem; text-transform:none; letter-spacing:0}
+.where__rule p{font-size:.88rem; color:var(--ink-soft); margin:4px 0 0}
+.where__verdict{
+  font-family:var(--mono); font-weight:700; font-size:.8rem; letter-spacing:0.14em;
+  padding:8px 12px; border-radius:8px;
+  white-space:nowrap;
+}
+.where__verdict--ok{background:var(--park); color:#fff}
+.where__verdict--no{background:var(--stop); color:#fff}
+.where__verdict--maybe{background:var(--marigold); color:var(--ink)}
+
+/* ============================================================
+   §5 — SAFETY RULES
+   ============================================================ */
+
+.safety__grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+}
+@media (max-width:980px){.safety__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.safety__grid{grid-template-columns:1fr}}
+
+.safety-tile{
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:5px 5px 0 var(--ink);
+  position:relative;
+  display:flex; flex-direction:column;
+  min-height:240px;
+}
+.safety-tile:nth-child(3n+1){background:linear-gradient(180deg,#FFE6CC,var(--paper) 70%)}
+.safety-tile:nth-child(3n+2){background:linear-gradient(180deg,#D8F0E0,var(--paper) 70%)}
+.safety-tile:nth-child(3n+3){background:linear-gradient(180deg,#DCE7FF,var(--paper) 70%)}
+
+.safety-tile__num{
+  position:absolute; top:-18px; right:-18px;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--ink); color:var(--marigold);
+  display:grid; place-items:center;
+  font-family:var(--display); font-size:1.4rem;
+  border:3px solid var(--paper);
+  box-shadow:0 0 0 3px var(--ink);
+}
+.safety-tile__ic{font-size:2.4rem; line-height:1; margin-bottom:10px; filter:drop-shadow(2px 2px 0 rgba(20,33,61,.2))}
+.safety-tile h3{font-size:1.4rem; margin-bottom:8px}
+.safety-tile p{font-size:.95rem; color:var(--ink-soft); margin:0}
+.safety-tile p .mono{font-weight:700; color:var(--ink); background:rgba(245,166,35,0.3); padding:0 6px; border-radius:4px}
+
+/* Inset polaroids for safety featured tiles */
+.safety-featured{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-bottom:32px;
+  align-items:center;
+}
+@media (max-width:780px){.safety-featured{grid-template-columns:1fr}}
+.safety-featured__polaroid .polaroid{transform:rotate(-2deg); max-width:380px; width:100%}
+.safety-featured__polaroid--right{justify-self:end}
+.safety-featured__polaroid--right .polaroid{transform:rotate(2deg)}
+.safety-featured__copy h3{font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:10px}
+.safety-featured__copy p{font-size:1.05rem; color:var(--ink-soft); font-variation-settings:"opsz" 20, "SOFT" 60}
+
+/* ============================================================
+   §6 — E-MOTO WARNING BAND
+   ============================================================ */
+
+.emoto{
+  background:var(--stop);
+  color:var(--paper);
+  border-radius:32px;
+  padding:48px clamp(24px,5vw,56px);
+  position:relative;
+  overflow:hidden;
+}
+.emoto::before{
+  content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(45deg, transparent 0 30px, rgba(252,243,220,0.04) 30px 32px);
+  pointer-events:none;
+}
+.emoto__grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:36px;
+  align-items:center;
+}
+@media (max-width:780px){.emoto__grid{grid-template-columns:1fr}}
+.emoto h2{color:var(--paper); font-size:clamp(2.4rem, 6vw, 4.2rem)}
+.emoto .eyebrow{color:var(--marigold)}
+.emoto p{font-size:1.1rem; line-height:1.45; max-width:34em; font-variation-settings:"opsz" 20, "SOFT" 80}
+.emoto__polaroid .polaroid{transform:rotate(-3deg); max-width:340px}
+
+.emoto__list{
+  list-style:none; padding:0; margin:24px 0 0;
+  display:grid; gap:10px;
+}
+.emoto__list li{
+  display:flex; align-items:flex-start; gap:12px;
+  padding-left:0;
+  font-size:1rem;
+}
+.emoto__list li::before{
+  content:"✕"; flex:0 0 28px; height:28px; border-radius:50%;
+  background:var(--paper); color:var(--stop);
+  display:grid; place-items:center;
+  font-weight:900;
+  margin-top:2px;
+}
+
+/* ============================================================
+   §7 — FINES LADDER
+   ============================================================ */
+
+.fines__grid{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:48px;
+  align-items:start;
+}
+@media (max-width:880px){.fines__grid{grid-template-columns:1fr}}
+.fines__officer .polaroid{transform:rotate(-2deg); max-width:280px}
+
+.ladder{display:grid; gap:16px}
+.rung{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:20px;
+  align-items:center;
+  padding:20px 24px;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  position:relative;
+  box-shadow:6px 6px 0 var(--ink);
+}
+.rung[data-tier="1"]{padding-left:20px; background:linear-gradient(90deg,#FFF6DE,var(--paper) 60%)}
+.rung[data-tier="2"]{padding-left:40px; background:linear-gradient(90deg,#FFE8C2,var(--paper) 60%)}
+.rung[data-tier="3"]{padding-left:60px; background:linear-gradient(90deg,#FFCEA0,var(--paper) 60%)}
+.rung[data-tier="4"]{padding-left:80px; background:linear-gradient(90deg,#FFB29A,var(--paper) 60%); border-color:var(--stop)}
+@media (max-width:560px){.rung[data-tier]{padding-left:20px !important}}
+
+.rung__tier{
+  font-family:var(--display);
+  font-size:2.2rem;
+  line-height:1;
+  color:var(--stop);
+  -webkit-text-stroke:1.5px var(--ink);
+}
+.rung__what{font-family:var(--display); font-size:1.4rem; line-height:1; margin-bottom:4px}
+.rung__detail{font-size:.9rem; color:var(--ink-soft)}
+.rung__amount{
+  font-family:var(--display);
+  font-size:clamp(1.8rem, 4vw, 2.8rem);
+  line-height:1;
+  color:var(--ink);
+  background:var(--marigold);
+  padding:8px 14px;
+  border-radius:10px;
+  border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.rung[data-tier="4"] .rung__amount{background:var(--stop); color:var(--paper)}
+
+.parent-note{
+  margin-top:32px;
+  padding:24px;
+  background:var(--ink);
+  color:var(--paper);
+  border-radius:16px;
+  display:flex; gap:16px; align-items:flex-start;
+  font-size:1rem;
+}
+.parent-note__ic{font-size:1.8rem; line-height:1; flex-shrink:0}
+.parent-note strong{color:var(--marigold)}
+
+/* ============================================================
+   §8 — FINE PRINT (Exemptions / Labeling)
+   ============================================================ */
+
+.fineprint__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+}
+@media (max-width:780px){.fineprint__grid{grid-template-columns:1fr}}
+.fineprint__card{
+  background:var(--paper);
+  border:2px dashed var(--ink);
+  border-radius:18px;
+  padding:28px;
+}
+.fineprint__card h3{font-size:1.4rem; margin-bottom:14px}
+.fineprint__card ul{padding-left:1.2em; margin:0; font-size:.98rem; color:var(--ink-soft)}
+.fineprint__card li{margin-bottom:8px}
+
+/* ============================================================
+   §7.5 — WATCH THE SQUAD (video grid + lightbox)
+   ============================================================ */
+
+.watch__lede{
+  font-size:clamp(1.05rem, 1.6vw, 1.25rem);
+  max-width:46em;
+  color:var(--ink-soft);
+  margin-bottom:36px;
+  font-variation-settings:"opsz" 24, "SOFT" 60;
+}
+.watch__lede strong{color:var(--ink); background:rgba(245,166,35,0.35); padding:0 6px; border-radius:4px}
+
+.watch__grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:28px;
+}
+@media (max-width:880px){.watch__grid{grid-template-columns:repeat(2, 1fr); gap:20px}}
+@media (max-width:520px){.watch__grid{grid-template-columns:1fr; gap:24px}}
+
+.watch-card{
+  appearance:none;
+  font:inherit;
+  color:inherit;
+  text-align:left;
+  background:#fff;
+  padding:12px 12px 50px;
+  border:0;
+  border-radius:3px;
+  cursor:pointer;
+  position:relative;
+  display:block;
+  width:100%;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.08),
+    0 10px 28px -10px rgba(20,33,61,.28),
+    0 30px 60px -24px rgba(20,33,61,.18);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+  transform:rotate(var(--r, 0deg));
+}
+.watch-card:nth-child(1){--r:-2.2deg}
+.watch-card:nth-child(2){--r:1.5deg}
+.watch-card:nth-child(3){--r:-1.2deg}
+.watch-card:nth-child(4){--r:2deg}
+.watch-card:nth-child(5){--r:-1.8deg}
+.watch-card:hover, .watch-card:focus-visible{
+  transform:rotate(0deg) translateY(-6px) scale(1.015);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.08),
+    0 18px 42px -10px rgba(20,33,61,.4),
+    0 50px 100px -30px rgba(20,33,61,.28);
+  outline:none;
+  z-index:2;
+}
+.watch-card:focus-visible{outline:3px solid var(--marigold); outline-offset:4px}
+
+.watch-card__media{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:9 / 16;
+  background:var(--ink);
+  border-radius:2px;
+  overflow:hidden;
+}
+.watch-card__media video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:var(--ink);
+}
+.watch-card__play{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  background:linear-gradient(180deg, transparent 50%, rgba(20,33,61,0.55) 100%);
+  transition:opacity .25s ease, background .25s ease;
+}
+.watch-card__play::after{
+  content:"";
+  width:64px; height:64px;
+  border-radius:50%;
+  background:rgba(252,243,220,0.95);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  display:block;
+  /* triangle via clip-path */
+  clip-path:circle(50% at 50% 50%);
+  position:relative;
+}
+.watch-card__play::before{
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  width:0; height:0;
+  transform:translate(-30%, -50%);
+  border-style:solid;
+  border-width:14px 0 14px 22px;
+  border-color:transparent transparent transparent var(--ink);
+  z-index:2;
+}
+.watch-card:hover .watch-card__play, .watch-card:focus-visible .watch-card__play{
+  opacity:0;
+}
+
+.watch-card__num{
+  position:absolute;
+  top:-14px; left:-14px;
+  width:44px; height:44px;
+  background:var(--marigold);
+  color:var(--ink);
+  border:2px solid var(--ink);
+  border-radius:50%;
+  display:grid; place-items:center;
+  font-family:var(--display);
+  font-size:1.05rem;
+  box-shadow:3px 3px 0 var(--ink);
+  z-index:3;
+  transform:rotate(-8deg);
+}
+.watch-card__caption{
+  position:absolute;
+  left:0; right:0;
+  bottom:14px;
+  padding:0 16px;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:.8rem;
+  letter-spacing:0.04em;
+  color:var(--ink-soft);
+  font-weight:500;
+  display:block;
+}
+.watch-card__caption strong{
+  display:block;
+  font-family:var(--display);
+  font-weight:400;
+  font-size:1.05rem;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  margin-bottom:2px;
+}
+
+.watch__hint{
+  margin-top:32px;
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+.watch__hint::before, .watch__hint::after{
+  content:"";
+  height:1px;
+  flex:1;
+  max-width:80px;
+  background:var(--ink-mute);
+  opacity:.4;
+}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(20,33,61,0.85);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+}
+.lightbox.is-open{opacity:1; pointer-events:auto}
+.lightbox__video{
+  display:block;
+  width:auto;
+  max-width:min(560px, 100%);
+  max-height:88vh;
+  aspect-ratio:9 / 16;
+  border-radius:10px;
+  background:#000;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  outline:none;
+}
+.lightbox__close{
+  position:absolute;
+  top:18px; right:18px;
+  width:48px; height:48px;
+  border-radius:50%;
+  background:var(--paper);
+  color:var(--ink);
+  border:2px solid var(--ink);
+  font-size:1.6rem; line-height:1;
+  font-family:var(--display);
+  cursor:pointer;
+  display:grid; place-items:center;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform .15s ease;
+}
+.lightbox__close:hover{transform:rotate(90deg)}
+.lightbox__close:focus-visible{outline:3px solid var(--marigold); outline-offset:3px}
+
+/* On touch devices, suppress hover-preview behavior via JS, but also drop the lift */
+@media (hover: none){
+  .watch-card:hover{transform:rotate(var(--r, 0deg))}
+}
+@media (prefers-reduced-motion: reduce){
+  .watch-card{transition:none}
+  .watch-card:hover, .watch-card:focus-visible{transform:rotate(var(--r, 0deg))}
+  .lightbox{transition:none}
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer{
+  background:var(--ink);
+  color:var(--paper);
+  padding:56px 0 32px;
+  margin-top:48px;
+}
+footer .wrap{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px}
+@media (max-width:780px){footer .wrap{grid-template-columns:1fr}}
+footer h4{color:var(--marigold); font-family:var(--display); font-size:1.4rem; text-transform:none; letter-spacing:0; margin-bottom:14px}
+footer p, footer li{font-size:.95rem; color:rgba(252,243,220,0.85); margin:0 0 8px}
+footer a{color:var(--marigold)}
+footer ul{list-style:none; padding:0; margin:0}
+.colophon{
+  margin-top:36px; padding-top:24px;
+  border-top:1px dashed rgba(252,243,220,0.2);
+  font-family:var(--mono); font-size:.72rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(252,243,220,0.5);
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+}
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease}
+.reveal.is-visible{opacity:1; transform:none}
+.reveal--right{transform:translateX(30px)}
+.reveal--right.is-visible{transform:none}
+.reveal--left{transform:translateX(-30px)}
+.reveal--left.is-visible{transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal,.reveal--right,.reveal--left{opacity:1; transform:none}
+  .scroll-cue__arrow{animation:none}
+}
+
+/* ============================================================
+   PRINT STYLES — Fridge-ready safety sheet
+   ============================================================ */
+@media print{
+  body::before, .topbar, .hero, .devices__banner, .pick::before,
+  .emoto::before, .scroll-cue, .safety-featured__polaroid,
+  .where__map, .fines__officer, .polaroid::before, .polaroid::after,
+  footer, .reveal{display:none !important}
+  body{background:#fff; color:#000; font-size:11pt}
+  section{padding:18px 0; border:none !important}
+  .pick, .emoto{background:#fff !important; color:#000 !important; border:2px solid #000; padding:18px; border-radius:0}
+  .pick h2, .emoto h2{color:#000 !important}
+  .chip-rail, .rules-card{display:none !important}
+  .safety__grid{grid-template-columns:repeat(2,1fr) !important; gap:8px !important}
+  .safety-tile{border:1px solid #000 !important; box-shadow:none !important; min-height:0 !important; padding:10px !important}
+  .where__rule{box-shadow:none !important; border:1px solid #000 !important}
+  .rung{box-shadow:none !important; border:1px solid #000 !important; padding:8px 12px !important}
+  .reveal{opacity:1 !important; transform:none !important}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOP NAV
+     ============================================================ -->
+<header class="topbar" role="banner">
+  <div class="topbar__inner">
+    <a href="#top" class="brand" aria-label="Batavia E-Mobility Guide home">
+      <span class="brand__seal" aria-hidden="true">B</span>
+      <span>
+        <span class="brand__name">Roll Smart, Ride Safe</span>
+        <span class="brand__sub">City of Batavia · Public Safety</span>
+      </span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">≡</button>
+    <nav id="primary-nav" class="nav" aria-label="Primary">
+      <a href="#devices">Devices</a>
+      <a href="#pick">Pick Your Ride</a>
+      <a href="#where">Where to Ride</a>
+      <a href="#safety">Safety</a>
+      <a href="#fines">Fines</a>
+      <a href="#watch">Watch</a>
+      <a href="#fineprint">Fine Print</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="wrap hero__grid">
+    <div class="reveal reveal--left">
+      <span class="eyebrow">Ordinance 2026-010 · Adopted March 16, 2026</span>
+      <h1 id="hero-title" class="hero__title">
+        <span class="l1">Roll Smart,</span>
+        <span class="l2">Ride Safe<span class="amp">!</span></span>
+      </h1>
+      <p class="hero__sub">
+        A plain-language, kid-friendly guide to Batavia's new e-bike, e-scooter, and micromobility rules — built for the riders, written for their grown-ups.
+      </p>
+      <div class="hero__meta">
+        <span class="stamp stamp--marigold">For Ages 8–12 &amp; Up</span>
+        <span class="stamp stamp--park">Parents Welcome</span>
+        <span class="stamp stamp--sky">Print Me!</span>
+      </div>
+      <a href="#why" class="scroll-cue">
+        <span>Start here</span>
+        <span class="scroll-cue__arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="hero__art reveal reveal--right">
+      <figure class="polaroid">
+        <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1800/batavia/hero" loading="eager" decoding="async" alt="Three diverse kids — a Black girl in a sky-blue helmet on an e-bike, a Latino boy in a marigold helmet on an electric scooter, and an Asian girl in a hot-pink helmet on an electric skateboard — riding side by side down a green-painted bike lane on a sunny tree-lined main street in Batavia." />
+        <figcaption class="caption">Downtown Batavia · golden hour</figcaption>
+      </figure>
+      <div class="badge" aria-hidden="true">
+        2026<br>RULES<span class="hero__badge-line">Official</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §1 — WHY THIS PAGE
+     ============================================================ -->
+<section id="why" aria-labelledby="why-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div>
+        <span class="eyebrow">The What &amp; The Why</span>
+        <h2 id="why-title">Hi! <span class="underline-wavy">Hop on.</span></h2>
+      </div>
+    </div>
+
+    <div class="intro__grid">
+      <div class="reveal">
+        <p class="intro__lead">
+          <span class="drop">B</span>atavia has new rules for electric bikes, scooters, skateboards, and other e-mobility devices. They sound fancy, but they boil down to one idea: <strong>get around safely, look out for everyone else, and have a great ride.</strong>
+        </p>
+        <p style="margin-top:18px; color:var(--ink-soft); font-size:1.05rem">
+          This page is a friendlier version of <a href="https://codelibrary.amlegal.com/codes/bataviail/latest/batavia_il/0-0-0-30739" target="_blank" rel="noopener">the full ordinance</a> — meant for kids who actually ride and the grown-ups who buy them their wheels.
+        </p>
+      </div>
+      <ul class="intro__list reveal">
+        <li>Where you can ride</li>
+        <li>How fast you can go</li>
+        <li>How old you have to be</li>
+        <li>What safety gear you need</li>
+        <li>What happens if you break the rules</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §2 — MEET THE DEVICES
+     ============================================================ -->
+<section id="devices" aria-labelledby="devices-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div>
+        <span class="eyebrow">Meet the Crew</span>
+        <h2 id="devices-title">Know your <span style="color:var(--sky-deep)">ride.</span></h2>
+      </div>
+    </div>
+
+    <div class="devices__banner reveal">
+      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1600/batavia/device-lineup" loading="lazy" decoding="async" alt="A friendly cartoon lineup of four e-mobility devices with eyes and personalities: a smiling sky-blue e-bike, a winking marigold-yellow electric kick scooter, a grinning purple electric skateboard, and a grumpy red electric dirt bike standing apart from the others." />
+      <span class="corner-stamp">The Lineup</span>
+    </div>
+
+    <div class="devices__grid">
+      <div class="device-card device-card--sky reveal">
+        <span class="device-card__icon" aria-hidden="true">🚲</span>
+        <h3>E-Bikes</h3>
+        <p>Real bikes you can also pedal — with a battery to help. Illinois sorts them into <strong>three classes</strong>:</p>
+        <p style="font-size:.88rem"><strong>Class 1:</strong> pedal-assist, motor stops at 20 mph.<br><strong>Class 2:</strong> throttle, up to 20 mph, no pedaling needed.<br><strong>Class 3:</strong> pedal-assist up to 28 mph (16+ &amp; helmet).</p>
+        <span class="tag">Motor &lt; 750 W · Pedals required</span>
+      </div>
+
+      <div class="device-card device-card--marigold reveal">
+        <span class="device-card__icon" aria-hidden="true">🛴</span>
+        <h3>E-Scooters</h3>
+        <p>Stand-up scooters with handlebars and a floorboard. Under <strong>100 lbs</strong>, 2 or 3 wheels, electric.</p>
+        <p style="font-size:.88rem">A <em>low-speed</em> e-scooter tops out at <strong>10 mph</strong>. Illinois says you must be <strong>18+</strong> to operate one.</p>
+        <span class="tag">18+ to ride</span>
+      </div>
+
+      <div class="device-card device-card--plum reveal">
+        <span class="device-card__icon" aria-hidden="true">🛹</span>
+        <h3>Micromobility</h3>
+        <p>Electric skateboards, one-wheels, and other lightweight, low-speed personal-mobility gadgets.</p>
+        <p style="font-size:.88rem">Top assisted speed: <strong>20 mph</strong>. Some are sidewalk-friendly (Class 1, ≤ 10 mph), others are not.</p>
+        <span class="tag">Class matters</span>
+      </div>
+
+      <div class="device-card device-card--stop reveal">
+        <span class="device-card__icon" aria-hidden="true">🏍️</span>
+        <h3>E-Motos</h3>
+        <p>Dirt-bike-shaped electric rides — basically motorcycles. <strong>Not legal e-bikes.</strong></p>
+        <p style="font-size:.88rem">Motors over <strong>750 W</strong>, throttle past <strong>20 mph</strong>, or no working pedals = e-moto. <strong>Banned on every public street, sidewalk, path, and park</strong> in Batavia.</p>
+        <span class="tag">Private property only</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §3 — PICK YOUR RIDE (INTERACTIVE)
+     ============================================================ -->
+<section id="pick" aria-labelledby="pick-title">
+  <div class="wrap">
+    <div class="pick reveal">
+      <div class="section-head" style="margin-bottom:24px">
+        <span class="section-num" aria-hidden="true" style="color:var(--marigold)">03</span>
+        <div>
+          <span class="eyebrow">Tap to Learn</span>
+          <h2 id="pick-title">Pick your ride.</h2>
+        </div>
+      </div>
+      <p class="pick__lede">Tap a chip below to see exactly what's allowed for that device and class — speed limit, minimum age, and whether you can ride on the sidewalk. Use arrow keys to flip through.</p>
+
+      <div class="chip-rail" role="tablist" aria-label="Choose a device and class">
+        <!-- chips injected by JS -->
+      </div>
+
+      <div class="rules-card" role="tabpanel" aria-live="polite" aria-atomic="true">
+        <div class="rules-card__accent" aria-hidden="true"></div>
+        <div>
+          <div class="rules-card__device">
+            <span class="ic" data-bind="icon" aria-hidden="true">🚲</span>
+            <div>
+              <h3 class="rules-card__title">
+                <span data-bind="name">E-Bike</span>
+                <small data-bind="cls">Class 1 · pedal-assist</small>
+              </h3>
+            </div>
+          </div>
+          <p class="rules-card__where" data-bind="where">Streets and roadways where regular bikes are allowed, dedicated bike lanes, and bike paths or trails (mind any posted trail speed limits).</p>
+          <div class="rules-card__tip"><strong>Kid tip:</strong> <span data-bind="tip">Wear a helmet, smile at pedestrians, and keep both wheels off the sidewalk.</span></div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat__label">Top Speed</div>
+            <div class="stat__value"><span data-bind="speed">20</span><span class="unit">mph</span></div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Minimum Age</div>
+            <div class="stat__value"><span data-bind="age">Any</span></div>
+          </div>
+          <div class="stat" data-bind-class="sidewalkStat">
+            <div class="stat__label">Sidewalk OK?</div>
+            <div class="stat__value" data-bind="sidewalk">No</div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Helmet?</div>
+            <div class="stat__value" data-bind="helmet" style="font-size:1.1rem;line-height:1.2">Required if under 16</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §4 — WHERE CAN YOU RIDE
+     ============================================================ -->
+<section id="where" aria-labelledby="where-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div>
+        <span class="eyebrow">The Map</span>
+        <h2 id="where-title">Where can <span style="color:var(--park-deep)">you ride?</span></h2>
+      </div>
+    </div>
+
+    <div class="where__grid">
+      <div class="where__map reveal reveal--left">
+        <figure class="polaroid">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1600/batavia/where-to-ride-map" loading="lazy" decoding="async" alt="A cheerful isometric cartoon map of a Batavia-style neighborhood showing a main street with cars, a bright-green-painted bike lane along it, a separate paved bike path winding through a park with a gazebo, a sidewalk along the storefronts where only pedestrians walk, the Fox River curving with a small footbridge, and a fenced grassy private lot where a small dirt bike sits." />
+          <figcaption class="caption">A quick tour of where wheels belong</figcaption>
+        </figure>
+      </div>
+
+      <div class="where__rules reveal reveal--right">
+        <div class="where__rule where__rule--ok">
+          <span class="where__ic" aria-hidden="true">🛣️</span>
+          <div>
+            <h4>Streets &amp; roadways</h4>
+            <p>Where regular bikes can ride. All e-bike classes welcome.</p>
+          </div>
+          <span class="where__verdict where__verdict--ok">YES</span>
+        </div>
+        <div class="where__rule where__rule--ok">
+          <span class="where__ic" aria-hidden="true">🚲</span>
+          <div>
+            <h4>Designated bike lanes</h4>
+            <p>The painted lanes on the road, made for two-wheelers.</p>
+          </div>
+          <span class="where__verdict where__verdict--ok">YES</span>
+        </div>
+        <div class="where__rule where__rule--ok">
+          <span class="where__ic" aria-hidden="true">🌳</span>
+          <div>
+            <h4>Bike paths &amp; trails</h4>
+            <p>Watch for posted speed limits — some paths have their own.</p>
+          </div>
+          <span class="where__verdict where__verdict--ok">YES</span>
+        </div>
+        <div class="where__rule where__rule--maybe">
+          <span class="where__ic" aria-hidden="true">🚶</span>
+          <div>
+            <h4>Sidewalks</h4>
+            <p><strong>E-bikes: NO</strong> (any class). <strong>Class 1 e-scooters &amp; micromobility (≤ 10 mph):</strong> sidewalks are OK. <strong>Class 2 (up to 20 mph):</strong> not on sidewalks.</p>
+          </div>
+          <span class="where__verdict where__verdict--maybe">DEPENDS</span>
+        </div>
+        <div class="where__rule where__rule--no">
+          <span class="where__ic" aria-hidden="true">🛑</span>
+          <div>
+            <h4>State highways</h4>
+            <p>Big, fast roads. Off-limits for e-scooters &amp; micromobility.</p>
+          </div>
+          <span class="where__verdict where__verdict--no">NO</span>
+        </div>
+        <div class="where__rule where__rule--no">
+          <span class="where__ic" aria-hidden="true">⚡</span>
+          <div>
+            <h4>Roads posted above 35 mph</h4>
+            <p>For e-scooters and micromobility, anything faster than 35 mph is a no.</p>
+          </div>
+          <span class="where__verdict where__verdict--no">NO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §5 — SAFETY RULES (EVERYONE)
+     ============================================================ -->
+<section id="safety" aria-labelledby="safety-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div>
+        <span class="eyebrow">Everybody, Every Time</span>
+        <h2 id="safety-title">Seven safety <span style="color:var(--stop)">superpowers.</span></h2>
+      </div>
+    </div>
+
+    <!-- Featured pair: helmet + lights with polaroid illustrations -->
+    <div class="safety-featured">
+      <div class="safety-featured__polaroid reveal reveal--left">
+        <figure class="polaroid">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800/batavia/helmet-hero" loading="lazy" decoding="async" alt="A cheerful cartoon girl in a glossy hot-pink helmet clicking the chin strap into place with a big smile and a wink." />
+          <figcaption class="caption">Click. Go.</figcaption>
+        </figure>
+      </div>
+      <div class="safety-featured__copy reveal reveal--right">
+        <span class="eyebrow">Rule #1</span>
+        <h3>If you're under 16, wear a helmet.</h3>
+        <p>Every device. Every ride. Doesn't matter if it's a quick lap to your friend's house. A helmet is the single most important piece of gear on the whole bike, scooter, or board.</p>
+      </div>
+    </div>
+
+    <div class="safety-featured" style="margin-top:48px">
+      <div class="safety-featured__copy reveal reveal--left" style="order:1">
+        <span class="eyebrow">Rule #2</span>
+        <h3>Lights on, after dark.</h3>
+        <p>A bright <strong>white headlight</strong> in front, visible from <span class="mono">500 ft</span>, and a <strong>red taillight</strong> on the back (steady or blinking), also visible from <span class="mono">500 ft</span>. Pro move? Leave them on during the day too.</p>
+      </div>
+      <div class="safety-featured__polaroid safety-featured__polaroid--right reveal reveal--right" style="order:2">
+        <figure class="polaroid">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800/batavia/lights-at-night" loading="lazy" decoding="async" alt="A cartoon boy in a navy helmet riding an e-bike at twilight on a quiet residential street, with a glowing white headlight casting forward and a vivid red taillight glowing behind him." />
+          <figcaption class="caption">Front white · rear red</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Remaining 5 rules as tiles -->
+    <div class="safety__grid" style="margin-top:48px">
+      <div class="safety-tile reveal">
+        <span class="safety-tile__num" aria-hidden="true">3</span>
+        <span class="safety-tile__ic" aria-hidden="true">🚦</span>
+        <h3>Obey the signs.</h3>
+        <p>Same traffic signals, same stop signs, same rules as cars and bikes. <strong>Always yield to pedestrians.</strong></p>
+      </div>
+      <div class="safety-tile reveal">
+        <span class="safety-tile__num" aria-hidden="true">4</span>
+        <span class="safety-tile__ic" aria-hidden="true">🚫</span>
+        <h3>Never ride impaired.</h3>
+        <p>Riding under the influence of alcohol or drugs is illegal on any e-mobility device — full stop.</p>
+      </div>
+      <div class="safety-tile reveal">
+        <span class="safety-tile__num" aria-hidden="true">5</span>
+        <span class="safety-tile__ic" aria-hidden="true">⚠️</span>
+        <h3>No reckless riding.</h3>
+        <p>Doing dangerous stuff that could hurt you or someone else is against the rules — even if nobody actually gets hurt.</p>
+      </div>
+      <div class="safety-tile reveal">
+        <span class="safety-tile__num" aria-hidden="true">6</span>
+        <span class="safety-tile__ic" aria-hidden="true">✋</span>
+        <h3>Hands on bars.</h3>
+        <p>Keep at least one hand on the handlebars at all times. Don't carry stuff that gets in the way of your grip.</p>
+      </div>
+      <div class="safety-tile reveal">
+        <span class="safety-tile__num" aria-hidden="true">7</span>
+        <span class="safety-tile__ic" aria-hidden="true">🔧</span>
+        <h3>Don't tamper.</h3>
+        <p>No removing speed governors. No modifying your device past what the law allows. Factory-fast is plenty fast.</p>
+      </div>
+      <div class="safety-tile reveal" style="background:linear-gradient(180deg,#FFE6F2,var(--paper) 70%)">
+        <span class="safety-tile__num" aria-hidden="true">★</span>
+        <span class="safety-tile__ic" aria-hidden="true">👋</span>
+        <h3>Bonus: be kind.</h3>
+        <p>Smile, wave, slow down for grown-ups walking dogs and kids on scooters. Sharing the path is a superpower.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §6 — E-MOTO WARNING
+     ============================================================ -->
+<section id="emotos" aria-labelledby="emoto-title">
+  <div class="wrap">
+    <div class="emoto reveal">
+      <div class="emoto__grid">
+        <div class="emoto__polaroid reveal reveal--left">
+          <figure class="polaroid">
+            <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800/batavia/emoto-warning" loading="lazy" decoding="async" alt="A cartoon red electric dirt bike sitting inside a small fenced grassy patch of private property, with a large semi-transparent red 'no' symbol — a circle with a diagonal slash — hovering above it." />
+            <figcaption class="caption">E-Motos · private property only</figcaption>
+          </figure>
+        </div>
+        <div class="reveal reveal--right">
+          <span class="eyebrow">Parents, read this</span>
+          <h2 id="emoto-title">Many "kid" bikes are <span style="color:var(--paper); border-bottom:6px solid var(--marigold)">not actually e-bikes.</span></h2>
+          <p>A lot of the dirt-bike-shaped electric rides marketed to teens are <strong>e-motos</strong> — out-of-class electric vehicles with more than 750 watts of motor or throttles that push past 20 mph. <strong>They are prohibited on every public street, sidewalk, parking lot, bike path, park, and any other public property in Batavia.</strong></p>
+          <ul class="emoto__list">
+            <li>Built on a bike-style frame, but with a real throttle</li>
+            <li>Capable of more than 20 mph on motor power alone</li>
+            <li>Motor output greater than 750 watts</li>
+            <li>E-motos, minibikes, and pocket bikes — all banned from public spaces</li>
+          </ul>
+          <p style="margin-top:20px"><strong>Where can they go?</strong> Private property, with permission, only.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §7 — FINES LADDER
+     ============================================================ -->
+<section id="fines" aria-labelledby="fines-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">06</span>
+      <div>
+        <span class="eyebrow">If You Break the Rules</span>
+        <h2 id="fines-title">Fines <span style="color:var(--marigold-deep)">grow</span> with repeats.</h2>
+      </div>
+    </div>
+
+    <div class="fines__grid">
+      <div class="fines__officer reveal reveal--left">
+        <figure class="polaroid">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_700/batavia/officer-friendly" loading="lazy" decoding="async" alt="A cartoon Batavia police officer, a smiling Black woman in a navy uniform, kneeling and giving a friendly thumbs-up." />
+          <figcaption class="caption">Batavia PD · 630-454-2500</figcaption>
+        </figure>
+        <p style="margin-top:18px; font-size:.95rem; color:var(--ink-soft); max-width:280px">
+          The goal isn't to write tickets — it's to keep everybody safe. But repeated violations get expensive, and your device can be impounded.
+        </p>
+      </div>
+
+      <div class="ladder reveal reveal--right">
+        <div class="rung" data-tier="1">
+          <span class="rung__tier">1st</span>
+          <div>
+            <div class="rung__what">First offense</div>
+            <div class="rung__detail">A friendly first reminder — with a real consequence.</div>
+          </div>
+          <span class="rung__amount">$50</span>
+        </div>
+        <div class="rung" data-tier="2">
+          <span class="rung__tier">2nd</span>
+          <div>
+            <div class="rung__what">Second offense</div>
+            <div class="rung__detail">Doubled. The rules really do apply.</div>
+          </div>
+          <span class="rung__amount">$100</span>
+        </div>
+        <div class="rung" data-tier="3">
+          <span class="rung__tier">3rd</span>
+          <div>
+            <div class="rung__what">Third offense</div>
+            <div class="rung__detail">Big jump. This is the "we're serious" tier.</div>
+          </div>
+          <span class="rung__amount">$500</span>
+        </div>
+        <div class="rung" data-tier="4">
+          <span class="rung__tier">4th+</span>
+          <div>
+            <div class="rung__what">Fourth offense (minimum)</div>
+            <div class="rung__detail">Plus your device may be impounded.</div>
+          </div>
+          <span class="rung__amount">$750</span>
+        </div>
+
+        <div class="parent-note">
+          <span class="parent-note__ic" aria-hidden="true">👪</span>
+          <div>
+            <strong>Parents &amp; guardians:</strong> you can be held responsible for violations by minors under your direct control, or with your consent or knowledge. Translation: if you bought it for them, you helped pick the rules.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §8 — WATCH THE SQUAD
+     ============================================================ -->
+<section id="watch" aria-labelledby="watch-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">07</span>
+      <div>
+        <span class="eyebrow">Caught on Camera</span>
+        <h2 id="watch-title">Watch the <span style="color:var(--stop)">squad.</span></h2>
+      </div>
+    </div>
+
+    <p class="watch__lede reveal">Five near-misses you don't want to star in. <strong>Hover to preview</strong> a clip. Tap any card to watch full-screen with sound.</p>
+
+    <div class="watch__grid">
+      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_2_V1_kjbmzt.mp4" aria-label="Watch Squad short 01 with sound">
+        <span class="watch-card__num" aria-hidden="true">01</span>
+        <span class="watch-card__media">
+          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_2_V1_kjbmzt.mp4"
+                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685388/short_2_V1_kjbmzt.jpg"
+                 muted loop playsinline preload="metadata"></video>
+          <span class="watch-card__play" aria-hidden="true"></span>
+        </span>
+        <span class="watch-card__caption"><strong>Caught looking.</strong>Eyes on the road, not the phone.</span>
+      </button>
+
+      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_5_V1_yjre17.mp4" aria-label="Watch Squad short 02 with sound">
+        <span class="watch-card__num" aria-hidden="true">02</span>
+        <span class="watch-card__media">
+          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_5_V1_yjre17.mp4"
+                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685388/short_5_V1_yjre17.jpg"
+                 muted loop playsinline preload="metadata"></video>
+          <span class="watch-card__play" aria-hidden="true"></span>
+        </span>
+        <span class="watch-card__caption"><strong>Sidewalks are for walking.</strong>Find the bike lane.</span>
+      </button>
+
+      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_4_V1_inggqo.mp4" aria-label="Watch Squad short 03 with sound">
+        <span class="watch-card__num" aria-hidden="true">03</span>
+        <span class="watch-card__media">
+          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_4_V1_inggqo.mp4"
+                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685388/short_4_V1_inggqo.jpg"
+                 muted loop playsinline preload="metadata"></video>
+          <span class="watch-card__play" aria-hidden="true"></span>
+        </span>
+        <span class="watch-card__caption"><strong>Heads up.</strong>One hand on the bars. Always.</span>
+      </button>
+
+      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_3_V1_fq3nfw.mp4" aria-label="Watch Squad short 04 with sound">
+        <span class="watch-card__num" aria-hidden="true">04</span>
+        <span class="watch-card__media">
+          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_3_V1_fq3nfw.mp4"
+                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685387/short_3_V1_fq3nfw.jpg"
+                 muted loop playsinline preload="metadata"></video>
+          <span class="watch-card__play" aria-hidden="true"></span>
+        </span>
+        <span class="watch-card__caption"><strong>Phew.</strong>Glad I learned that one.</span>
+      </button>
+
+      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_1_V1_rpwqll.mp4" aria-label="Watch Squad short 05 with sound">
+        <span class="watch-card__num" aria-hidden="true">05</span>
+        <span class="watch-card__media">
+          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_1_V1_rpwqll.mp4"
+                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685387/short_1_V1_rpwqll.jpg"
+                 muted loop playsinline preload="metadata"></video>
+          <span class="watch-card__play" aria-hidden="true"></span>
+        </span>
+        <span class="watch-card__caption"><strong>Don't be the next one.</strong>Roll smart. Ride safe.</span>
+      </button>
+    </div>
+
+    <p class="watch__hint reveal">Hover · Tap · Watch · Share</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     §9 — FINE PRINT (Exemptions + Labeling)
+     ============================================================ -->
+<section id="fineprint" aria-labelledby="fineprint-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">08</span>
+      <div>
+        <span class="eyebrow">The Fine Print</span>
+        <h2 id="fineprint-title">Exemptions <span style="color:var(--plum)">&amp;</span> labels.</h2>
+      </div>
+    </div>
+
+    <div class="fineprint__grid">
+      <div class="fineprint__card reveal reveal--left">
+        <h3>Who's exempt?</h3>
+        <p style="color:var(--ink-soft); margin-bottom:14px">These rules don't apply to:</p>
+        <ul>
+          <li>Motorized wheelchairs used by people with disabilities</li>
+          <li>Electric personal assistance mobility devices, as defined by Illinois state law</li>
+        </ul>
+      </div>
+      <div class="fineprint__card reveal reveal--right">
+        <h3>Device labeling</h3>
+        <p style="color:var(--ink-soft); margin-bottom:14px">Required so riders and officers can quickly tell which rules apply:</p>
+        <ul>
+          <li>Every e-bike must be labeled with its <strong>class</strong> (1, 2, or 3) and its <strong>wattage</strong></li>
+          <li>Every e-scooter must be labeled with its <strong>wattage</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Batavia Police Department</h4>
+      <p>100 N. Island Avenue<br>Batavia, IL 60510</p>
+      <p><a href="tel:6304542500">630-454-2500</a></p>
+      <p style="margin-top:14px"><a href="https://www.bataviail.gov/o/police/page/e-mobility-guide" target="_blank" rel="noopener">Official guide on bataviail.gov →</a></p>
+    </div>
+    <div>
+      <h4>Read the law</h4>
+      <ul>
+        <li><a href="https://codelibrary.amlegal.com/codes/bataviail/latest/batavia_il/0-0-0-30739" target="_blank" rel="noopener">Ordinance 2026-010 (full text)</a></li>
+        <li><a href="https://codelibrary.amlegal.com/codes/bataviail/latest/batavia_il/0-0-0-5117" target="_blank" rel="noopener">Bicycle Riding Regulations §6-9-2</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>What is this?</h4>
+      <p>A plain-language summary of the ordinance for kids and parents. <strong>It is not the law itself</strong> — the official ordinance always wins.</p>
+      <p style="margin-top:10px">Print it. Stick it on the fridge. Have a great summer.</p>
+    </div>
+    <div class="colophon">
+      <span>City of Batavia · E-Mobility Guide</span>
+      <span>Adopted March 16, 2026 · Ordinance 2026-010</span>
+      <span>Roll Smart, Ride Safe</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX (hidden until activated by a watch-card)
+     ============================================================ -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Video player">
+  <button type="button" class="lightbox__close" aria-label="Close video">×</button>
+  <video class="lightbox__video" controls playsinline preload="none"></video>
+</div>
+
+<!-- ============================================================
+     SCRIPT — Pick Your Ride + reveal-on-scroll + Watch the Squad
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  // ---- Data: every row of the ordinance table ----
+  const RIDES = [
+    {
+      id:'ebike-1', family:'bike', icon:'🚲',
+      label:'E-Bike', cls:'Class 1 · pedal-assist',
+      speed:'20', age:'Any', helmet:'Under 16',
+      sidewalk:false,
+      where:'Streets and roadways where bikes are allowed, dedicated bike lanes, and bike paths or trails (mind any posted trail speed limits).',
+      tip:'Pedal-assist only — the motor stops helping once you hit 20 mph. No sidewalks, ever.'
+    },
+    {
+      id:'ebike-2', family:'bike', icon:'🚲',
+      label:'E-Bike', cls:'Class 2 · throttle',
+      speed:'20', age:'Any', helmet:'Under 16',
+      sidewalk:false,
+      where:'Streets, bike lanes, and bike paths or trails. No sidewalks, no matter what.',
+      tip:'The throttle does the work up to 20 mph. Same places as Class 1 — still no sidewalks.'
+    },
+    {
+      id:'ebike-3', family:'bike', icon:'🚲',
+      label:'E-Bike', cls:'Class 3 · faster pedal-assist',
+      speed:'28', age:'16+', helmet:'Always',
+      sidewalk:false,
+      where:'Streets, bike lanes, and bike paths or trails. No sidewalks. Passengers under 16 OK if the bike is built for two.',
+      tip:'Operator must be at least 16, and every Class 3 rider wears a helmet — no exceptions. 28 mph is fast.'
+    },
+    {
+      id:'scooter-1', family:'scooter', icon:'🛴',
+      label:'E-Scooter', cls:'Class 1 · low-speed',
+      speed:'10', age:'18+', helmet:'Under 16',
+      sidewalk:true,
+      where:'Streets, sidewalks, bike paths and trails, and other designated paths.',
+      tip:'Low-speed (10 mph max) means sidewalks are OK. Watch for walkers and slow down near them.'
+    },
+    {
+      id:'scooter-2', family:'scooter', icon:'🛴',
+      label:'E-Scooter', cls:'Class 2 · faster',
+      speed:'20', age:'18+', helmet:'Under 16',
+      sidewalk:false,
+      where:'Streets, bike paths, and trails. Not on state highways. Not on roads posted above 35 mph.',
+      tip:'Faster scooters belong with cars and bikes — never on the sidewalk.'
+    },
+    {
+      id:'micro-1', family:'micro', icon:'🛹',
+      label:'Micromobility', cls:'Class 1 · low-speed',
+      speed:'10', age:'13+', helmet:'Under 16',
+      sidewalk:true,
+      where:'Streets, sidewalks, bike paths and trails, and designated paths.',
+      tip:'Electric skateboards and one-wheels in the slow lane. Sidewalks are OK — be a courteous neighbor.'
+    },
+    {
+      id:'micro-2', family:'micro', icon:'🛹',
+      label:'Micromobility', cls:'Class 2 · faster',
+      speed:'20', age:'18+', helmet:'Under 16',
+      sidewalk:false,
+      where:'Streets, bike paths, and trails. No sidewalks. No state highways. No roads posted above 35 mph.',
+      tip:'Once you cross 10 mph territory, you ride with traffic and bikes — not pedestrians.'
+    }
+  ];
+
+  // Accent color per family
+  const ACCENT = {
+    bike:    'var(--sky)',
+    scooter: 'var(--marigold)',
+    micro:   'var(--plum)'
+  };
+
+  // ---- Render chips ----
+  const rail = document.querySelector('.chip-rail');
+  RIDES.forEach((r, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.type = 'button';
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+    btn.dataset.id = r.id;
+    btn.innerHTML = `<span class="chip__icon" aria-hidden="true">${r.icon}</span><span>${r.label}</span><span class="chip__cls">${r.cls.split(' · ')[0]}</span>`;
+    btn.addEventListener('click', () => select(r.id));
+    btn.addEventListener('keydown', onChipKeydown);
+    rail.appendChild(btn);
+  });
+
+  // ---- Card refs ----
+  const card = document.querySelector('.rules-card');
+  const accent = card.querySelector('.rules-card__accent');
+  const bindings = {
+    icon:     card.querySelector('[data-bind="icon"]'),
+    name:     card.querySelector('[data-bind="name"]'),
+    cls:      card.querySelector('[data-bind="cls"]'),
+    where:    card.querySelector('[data-bind="where"]'),
+    tip:      card.querySelector('[data-bind="tip"]'),
+    speed:    card.querySelector('[data-bind="speed"]'),
+    age:      card.querySelector('[data-bind="age"]'),
+    sidewalk: card.querySelector('[data-bind="sidewalk"]'),
+    helmet:   card.querySelector('[data-bind="helmet"]')
+  };
+  const sidewalkStat = bindings.sidewalk.closest('.stat');
+
+  function select(id){
+    const r = RIDES.find(x => x.id === id);
+    if (!r) return;
+    // Mark chips
+    document.querySelectorAll('.chip').forEach(c => {
+      c.setAttribute('aria-pressed', c.dataset.id === id ? 'true' : 'false');
+    });
+    // Animate the swap
+    card.classList.add('is-flipping');
+    setTimeout(() => {
+      bindings.icon.textContent     = r.icon;
+      bindings.name.textContent     = r.label;
+      bindings.cls.textContent      = r.cls;
+      bindings.where.textContent    = r.where;
+      bindings.tip.textContent      = r.tip;
+      bindings.speed.textContent    = r.speed;
+      bindings.age.textContent      = r.age;
+      bindings.sidewalk.textContent = r.sidewalk ? 'Yes' : 'No';
+      bindings.helmet.textContent   = r.helmet === 'Always'
+        ? 'Required, every rider'
+        : 'Required if under 16';
+      // accent + sidewalk color
+      accent.style.background = ACCENT[r.family];
+      sidewalkStat.classList.toggle('stat--ok', r.sidewalk);
+      sidewalkStat.classList.toggle('stat--no', !r.sidewalk);
+      card.classList.remove('is-flipping');
+    }, 180);
+  }
+
+  function onChipKeydown(e){
+    const chips = Array.from(rail.querySelectorAll('.chip'));
+    const i = chips.indexOf(e.currentTarget);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+      e.preventDefault();
+      const next = chips[(i + 1) % chips.length];
+      next.focus(); select(next.dataset.id);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      const prev = chips[(i - 1 + chips.length) % chips.length];
+      prev.focus(); select(prev.dataset.id);
+    } else if (e.key === 'Home'){
+      e.preventDefault();
+      chips[0].focus(); select(chips[0].dataset.id);
+    } else if (e.key === 'End'){
+      e.preventDefault();
+      chips[chips.length-1].focus(); select(chips[chips.length-1].dataset.id);
+    }
+  }
+
+  // Initialize with the first ride
+  select(RIDES[0].id);
+
+  // ---- Mobile nav toggle ----
+  const menuBtn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('primary-nav');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ---- Reveal on scroll ----
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
+
+  // ---- Watch the Squad: hover-preview + click-to-lightbox ----
+  const watchCards = document.querySelectorAll('.watch-card');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxVideo = lightbox.querySelector('.lightbox__video');
+  const lightboxClose = lightbox.querySelector('.lightbox__close');
+  const supportsHover = window.matchMedia('(hover: hover)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lastFocused = null;
+
+  function pauseAllPreviews(){
+    watchCards.forEach(c => {
+      const v = c.querySelector('video');
+      if (v){ v.pause(); try { v.currentTime = 0; } catch(_){} }
+    });
+  }
+
+  function openLightbox(src, fromEl){
+    if (!src) return;
+    lastFocused = fromEl || document.activeElement;
+    pauseAllPreviews();
+    lightboxVideo.src = src;
+    lightbox.hidden = false;
+    requestAnimationFrame(() => lightbox.classList.add('is-open'));
+    document.body.style.overflow = 'hidden';
+    // Try to autoplay with sound; browsers may still require a user gesture (the click counts).
+    setTimeout(() => {
+      const p = lightboxVideo.play();
+      if (p && p.catch) p.catch(() => {});
+      lightboxClose.focus();
+    }, 60);
+  }
+
+  function closeLightbox(){
+    if (!lightbox.classList.contains('is-open')) return;
+    lightbox.classList.remove('is-open');
+    lightboxVideo.pause();
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      lightbox.hidden = true;
+      lightboxVideo.removeAttribute('src');
+      lightboxVideo.load();
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }, 260);
+  }
+
+  watchCards.forEach(card => {
+    const video = card.querySelector('video');
+    if (supportsHover && !reducedMotion && video){
+      card.addEventListener('mouseenter', () => {
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        try { video.currentTime = 0; } catch(_){}
+      });
+    }
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      openLightbox(card.dataset.video, card);
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    // Click on the backdrop (not the video or close button) closes
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
+})();
+</script>
+
+</body>
+</html>

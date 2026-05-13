@@ -1,0 +1,73 @@
+# Roll Smart, Ride Safe — Batavia E-Mobility Landing Page
+
+A friendly, kid-first landing page summarizing the City of Batavia's e-mobility ordinance (**2026-010**, adopted March 16, 2026). Designed for ages 8–12 and their parents.
+
+## Open it
+
+```
+open index.html
+```
+
+It's a single self-contained HTML file — no server, no build step, no dependencies beyond Google Fonts. Drop the whole folder anywhere (S3, GitHub Pages, a city subdomain, a USB stick) and it just runs.
+
+## What's in here
+
+```
+emobilitysafety/
+├── index.html              # the entire page (HTML + inline CSS + inline JS)
+├── images/                 # 7 AI-generated Pixar-style illustrations
+│   ├── hero.png            # 3 diverse kids riding (nano-banana)
+│   ├── device-lineup.png   # 4 device characters (nano-banana)
+│   ├── where-to-ride-map.png   # isometric Batavia map (nano-banana)
+│   ├── helmet-hero.png     # helmet click-in (nano-banana)
+│   ├── lights-at-night.png # e-bike at dusk (nano-banana)
+│   ├── emoto-warning.png   # banned e-moto (openai-images)
+│   └── officer-friendly.png    # Batavia PD thumbs-up (openai-images)
+├── plan/                   # design plan + source HTML (do not ship)
+└── README.md
+```
+
+## Editing the rules
+
+All rule data lives in two places in `index.html`:
+
+1. **Static prose** (Meet the Devices, Where to Ride, Safety Rules, Fines, Fine Print) — edit the HTML directly. Each section has a clearly commented header banner like `§5 — SAFETY RULES`.
+2. **Interactive "Pick Your Ride"** — the 7-row data array is in the `<script>` block, near the bottom of the file, in the `RIDES` constant. Each entry maps to one row of the ordinance's device/class table: `speed`, `age`, `sidewalk` (bool), `where`, and a kid-voice `tip`.
+
+If the ordinance is amended, update both places and any affected fines/age numbers.
+
+## Source of truth
+
+- Plain-language summary: `https://www.bataviail.gov/o/police/page/e-mobility-guide`
+- Full ordinance: `https://codelibrary.amlegal.com/codes/bataviail/latest/batavia_il/0-0-0-30739`
+- Bicycle Riding Regulations §6-9-2: `https://codelibrary.amlegal.com/codes/bataviail/latest/batavia_il/0-0-0-5117`
+
+All rule content on this page is paraphrased from the city's official guide. **This is a friendly summary — the official ordinance always wins.**
+
+## Regenerating images
+
+The illustrations were generated with two tools — both are MCP image servers:
+
+- **Gemini 3 Pro Image (nano-banana)** handled multi-character scenes (hero, device lineup, map, helmet, lights at night).
+- **OpenAI gpt-image-2** handled cleaner isolated subjects (e-moto warning, officer portrait).
+
+Every prompt explicitly asked for: *Pixar/Disney soft 3D cartoon style, rounded shapes, bright primary colors, diverse children, sunny suburban Illinois setting, no text/logos/lettering inside the image.* The no-text instruction matters — AI generators routinely produce garbled signage that would undermine a public-safety page.
+
+To swap an image, replace the file in `images/` with the same filename and the page will pick it up. Update the `alt=""` text in `index.html` to match what the new image actually shows.
+
+## Accessibility & polish
+
+- All images have descriptive alt text.
+- "Pick Your Ride" uses real `<button>` elements with `aria-pressed`, full arrow-key + Home/End keyboard navigation, and `aria-live` on the rules panel.
+- Every ✅/❌ uses both color **and** text, so colorblind users are not left out.
+- Body text meets WCAG AA contrast against the cream paper background.
+- `prefers-reduced-motion` disables the scroll cue bob and reveal animations.
+- The page works fully without JavaScript — only the interactive picker degrades (the static rules card still shows valid Class 1 e-bike defaults).
+
+## Printing
+
+Hit Cmd+P (or File → Print). A dedicated `@media print` block strips the hero, photos, interactive picker, and decorations, and lays out the safety rules + where-to-ride list + fines ladder as a clean one-page handout suitable for a fridge or community board.
+
+## License & attribution
+
+Rule content paraphrased from the City of Batavia's official e-mobility guide and Ordinance 2026-010 (public domain municipal text). Illustrations generated for this project. Fonts (Bagel Fat One, Fraunces, JetBrains Mono) loaded from Google Fonts under SIL Open Font License.
