@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thanks! — Roll Smart, Ride Safe</title>
+<meta name="description" content="Permission slip received." />
+<meta name="theme-color" content="#FCF3DC" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#FCF3DC; --paper-2:#F7E7B8;
+  --ink:#14213D; --ink-soft:#2A3A5F;
+  --marigold:#F5A623; --marigold-deep:#D88A0A;
+  --stop:#E63946; --park:#2A9D5F; --park-deep:#1F7B47;
+  --display:'Bagel Fat One', system-ui, sans-serif;
+  --serif:'Fraunces', 'Iowan Old Style', 'Georgia', serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --halftone: radial-gradient(circle at 50% 50%, rgba(20,33,61,0.06) 0.6px, transparent 0.7px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:18px; line-height:1.55;
+  display:grid; place-items:center; padding:24px;
+}
+body::before{
+  content:""; position:fixed; inset:0;
+  background:var(--halftone), var(--halftone);
+  background-size:6px 6px, 9px 9px; background-position:0 0, 3px 3px;
+  pointer-events:none; z-index:0; mix-blend-mode:multiply; opacity:.7;
+}
+.card{
+  position:relative; z-index:1;
+  background:#fff; max-width:560px;
+  border:3px solid var(--ink); border-radius:22px;
+  padding:48px clamp(28px, 5vw, 56px);
+  box-shadow:10px 10px 0 var(--ink);
+  text-align:center;
+}
+.stamp{
+  display:inline-block; transform:rotate(-6deg);
+  font-family:var(--mono); font-weight:700; font-size:.78rem;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--park-deep);
+  border:3px solid var(--park-deep); padding:8px 16px; border-radius:4px;
+  background:rgba(42,157,95,0.08);
+  margin-bottom:24px;
+}
+h1{
+  font-family:var(--display); font-weight:400;
+  font-size:clamp(2.2rem, 6vw, 3.6rem); line-height:1;
+  margin:0 0 16px; color:var(--ink);
+}
+h1 .accent{color:var(--stop); display:block; transform:rotate(1deg); margin-top:2px}
+p{margin:0 0 14px; color:var(--ink-soft)}
+.btn{
+  appearance:none; cursor:pointer;
+  font-family:var(--display); font-size:1.05rem;
+  background:var(--marigold); color:var(--ink);
+  border:3px solid var(--ink); border-radius:14px;
+  padding:14px 24px; margin-top:14px;
+  box-shadow:4px 4px 0 var(--ink);
+  text-decoration:none; display:inline-block;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink)}
+.confetti{font-size:3rem; line-height:1; margin-bottom:8px}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="confetti">🎉</div>
+    <span class="stamp">Received ✓</span>
+    <h1>
+      Thanks!
+      <span class="accent">You're on the list.</span>
+    </h1>
+    <p>We got your permission slip. Your child is cleared to participate in the <strong>Roll Smart, Ride Safe</strong> shoot on <strong>Tuesday, May 19</strong> at 11:00 AM.</p>
+    <p>A copy will be emailed to you. See you at the bike rack — helmets on, donuts ready.</p>
+    <a class="btn" href="index.html">← Back to the guide</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Netlify configuration for Roll Smart, Ride Safe
+# Static site — no build step. Netlify auto-detects the form in
+# permission-slip.html via the data-netlify="true" attribute.
+
+[build]
+  publish = "."
+  # No command needed; site is hand-authored HTML.
+
+[[redirects]]
+  # Pretty URL: /permission → permission-slip.html
+  from = "/permission"
+  to = "/permission-slip.html"
+  status = 301
+  force = false
