@@ -30,3 +30,8 @@ generated-images/
 campaign/videos/*.mp4
 campaign/videos/*.mov
 campaign/videos/*.webm
+
+# Unencrypted source for password-protected pages — must NEVER be committed
+# to the public repo, or the password protection is meaningless.
+# Edit the .source.html file, then run `python3 encrypt-page.py` to publish.
+*.source.html

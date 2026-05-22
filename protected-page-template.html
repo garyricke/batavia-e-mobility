@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Protected · Roll Smart, Ride Safe</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#FCF3DC;
+  --ink:#14213D;
+  --ink-soft:#2A3A5F;
+  --marigold:#F5A623;
+  --stop:#E63946;
+  --sky:#4E89F0;
+  --display:'Bagel Fat One', system-ui, sans-serif;
+  --serif:'Fraunces', Georgia, serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0; height:100%}
+body{
+  background:var(--paper);
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(20,33,61,0.05) 0.7px, transparent 0.8px),
+    repeating-linear-gradient(45deg, transparent 0 30px, rgba(20,33,61,0.025) 30px 31px);
+  background-size:6px 6px, auto;
+  color:var(--ink);
+  font-family:var(--serif);
+  display:flex; align-items:center; justify-content:center;
+  min-height:100vh;
+  padding:24px;
+}
+.lock{
+  max-width:440px; width:100%;
+  background:rgba(255,255,255,0.6);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  padding:36px 32px;
+  box-shadow:8px 8px 0 var(--ink);
+  text-align:center;
+  position:relative;
+}
+.lock__icon{
+  width:64px; height:64px;
+  background:var(--ink); color:var(--marigold);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-size:1.8rem;
+  margin:0 auto 18px;
+  border:3px solid var(--ink);
+}
+.lock__eyebrow{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;
+}
+.lock__title{
+  font-family:var(--display); font-size:2rem; line-height:1;
+  margin:0 0 12px; color:var(--ink);
+}
+.lock__title .accent{color:var(--stop); display:inline-block; transform:rotate(-1deg)}
+.lock__sub{
+  font-family:var(--serif); font-size:.98rem;
+  color:var(--ink-soft); margin:0 0 22px; line-height:1.5;
+}
+.lock__form{
+  display:flex; flex-direction:column; gap:12px;
+}
+.lock__input{
+  font-family:var(--serif); font-size:1.05rem;
+  padding:14px 16px;
+  border:2px solid var(--ink); border-radius:10px;
+  background:#fff; color:var(--ink);
+  outline:none;
+  box-shadow:3px 3px 0 var(--ink);
+  transition:box-shadow .12s ease, transform .12s ease;
+}
+.lock__input:focus{
+  box-shadow:5px 5px 0 var(--ink);
+  transform:translate(-1px,-1px);
+}
+.lock__btn{
+  font-family:var(--display); font-size:1.2rem;
+  padding:13px 18px;
+  border:3px solid var(--ink); border-radius:999px;
+  background:var(--marigold); color:var(--ink);
+  cursor:pointer;
+  box-shadow:5px 5px 0 var(--ink);
+  transition:box-shadow .12s ease, transform .12s ease;
+}
+.lock__btn:hover{ box-shadow:7px 7px 0 var(--ink); transform:translate(-1px,-1px) }
+.lock__btn:active{ box-shadow:2px 2px 0 var(--ink); transform:translate(2px,2px) }
+.lock__error{
+  font-family:var(--mono); font-size:.78rem; letter-spacing:0.06em;
+  color:var(--stop); min-height:1.2em; margin-top:6px;
+}
+.lock__foot{
+  margin-top:22px;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:0.12em;
+  color:var(--ink-soft); text-transform:uppercase;
+}
+.lock--working .lock__btn{ opacity:.6; pointer-events:none }
+
+/* Hidden until decrypted */
+#decrypted{display:none}
+</style>
+</head>
+<body>
+
+<div class="lock" id="lock">
+  <div class="lock__icon">🔒</div>
+  <div class="lock__eyebrow">— Roll Smart, Ride Safe</div>
+  <h1 class="lock__title">Password <span class="accent">required.</span></h1>
+  <p class="lock__sub">This page is a private proposal for City of Batavia staff. Enter the password Gary shared with you to view it.</p>
+  <form class="lock__form" id="lockForm" autocomplete="off">
+    <input class="lock__input" type="password" id="pw" placeholder="Password" autofocus required />
+    <button class="lock__btn" type="submit">Unlock →</button>
+    <div class="lock__error" id="err"></div>
+  </form>
+  <div class="lock__foot">Orbis Design · 2026</div>
+</div>
+
+<div id="decrypted"></div>
+
+<script id="ciphertext" type="text/plain">__CIPHERTEXT__</script>
+
+<script>
+(function(){
+  const ITER = __ITERATIONS__;
+  const lock = document.getElementById('lock');
+  const form = document.getElementById('lockForm');
+  const pwInput = document.getElementById('pw');
+  const err = document.getElementById('err');
+  const out = document.getElementById('decrypted');
+  const blob = document.getElementById('ciphertext').textContent.trim();
+
+  function b64ToBytes(b64){
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes;
+  }
+
+  async function deriveKey(password, salt){
+    const enc = new TextEncoder();
+    const baseKey = await crypto.subtle.importKey(
+      'raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']
+    );
+    return crypto.subtle.deriveKey(
+      { name:'PBKDF2', salt, iterations:ITER, hash:'SHA-256' },
+      baseKey,
+      { name:'AES-GCM', length:256 },
+      false,
+      ['decrypt']
+    );
+  }
+
+  async function tryUnlock(password){
+    const packed = b64ToBytes(blob);
+    const salt = packed.slice(0, 16);
+    const nonce = packed.slice(16, 28);
+    const ciphertext = packed.slice(28);
+    const key = await deriveKey(password, salt);
+    const plain = await crypto.subtle.decrypt({ name:'AES-GCM', iv:nonce }, key, ciphertext);
+    return new TextDecoder().decode(plain);
+  }
+
+  function reveal(html){
+    // Replace the entire document with the decrypted HTML so styles,
+    // scripts, and layout all behave as if this were the original file.
+    document.open();
+    document.write(html);
+    document.close();
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    err.textContent = '';
+    lock.classList.add('lock--working');
+    try {
+      const plain = await tryUnlock(pwInput.value);
+      sessionStorage.setItem('rs-unlock', pwInput.value);
+      reveal(plain);
+    } catch (ex) {
+      err.textContent = 'Wrong password. Try again.';
+      pwInput.select();
+    } finally {
+      lock.classList.remove('lock--working');
+    }
+  });
+
+  // Auto-unlock if we already entered the password this session
+  const remembered = sessionStorage.getItem('rs-unlock');
+  if (remembered) {
+    tryUnlock(remembered).then(reveal).catch(function(){ sessionStorage.removeItem('rs-unlock'); });
+  }
+})();
+</script>
+
+</body>
+</html>
