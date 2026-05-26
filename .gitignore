@@ -21,10 +21,6 @@ dist/
 build/
 *.log
 
-# Temporary image-generator drop folders
-generated_imgs/
-generated-images/
-
 # Rendered video artifacts — large binaries, hosted on Cloudinary instead.
 # PRODUCTION.md files document exactly how to regenerate from keyframes.
 campaign/videos/*.mp4
