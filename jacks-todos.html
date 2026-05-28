@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jack's To-Dos — Roll Smart, Ride Safe</title>
+<meta name="description" content="Production punch list for finishing every kid's end-card video in the Roll Smart, Ride Safe series." />
+<meta name="theme-color" content="#FCF3DC" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#FCF3DC; --paper-2:#F7E7B8; --paper-3:#FDE6C8;
+  --ink:#14213D; --ink-soft:#2A3A5F; --ink-mute:#6B7390;
+  --marigold:#F5A623; --marigold-deep:#D88A0A;
+  --stop:#E63946; --stop-deep:#B82E3A;
+  --park:#2A9D5F; --park-deep:#1F7B47;
+  --sky:#4E89F0; --sky-deep:#2E68D0;
+  --pink:#FF6FB5; --plum:#7B3F9E;
+
+  --display:'Bagel Fat One', system-ui, sans-serif;
+  --serif:'Fraunces', 'Georgia', serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  --halftone:radial-gradient(circle at 50% 50%, rgba(20,33,61,0.06) 0.6px, transparent 0.7px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-variation-settings:"opsz" 14, "SOFT" 100;
+  font-size:18px; line-height:1.55; overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0;
+  background:var(--halftone), var(--halftone);
+  background-size:6px 6px, 9px 9px; background-position:0 0, 3px 3px;
+  pointer-events:none; z-index:1; mix-blend-mode:multiply; opacity:0.7;
+}
+::selection{background:var(--marigold);color:var(--ink)}
+
+a{color:var(--sky-deep);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--stop)}
+
+h1,h2,h3{font-family:var(--display); font-weight:400; line-height:1; letter-spacing:-0.01em; margin:0; color:var(--ink)}
+h1{font-size:clamp(2.8rem, 8vw, 6rem)}
+h2{font-size:clamp(1.7rem, 4vw, 2.8rem); letter-spacing:-0.02em}
+h3{font-size:clamp(1.2rem, 2vw, 1.6rem)}
+h4{font-family:var(--serif); font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 8px}
+p{margin:0 0 1em}
+strong{font-weight:800; color:var(--ink)}
+
+.code-inline{font-family:var(--mono); font-size:.86em; background:rgba(20,33,61,0.06); padding:2px 6px; border-radius:4px; font-weight:600; word-break:break-word}
+
+.wrap{max-width:1000px; margin:0 auto; padding:0 24px; position:relative; z-index:2}
+.narrow{max-width:780px; margin-left:auto; margin-right:auto}
+
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:var(--paper);
+  border-bottom:3px solid var(--ink);
+  box-shadow:0 4px 0 var(--marigold), 0 6px 24px -8px rgba(20,33,61,.18);
+}
+.topbar__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; padding:14px 24px; max-width:1000px; margin:0 auto;
+}
+.brand{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink)}
+.brand__seal{
+  width:46px; height:46px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, var(--marigold), var(--marigold-deep) 70%, var(--ink) 100%);
+  border:2px solid var(--ink); display:grid; place-items:center;
+  font-family:var(--display); font-size:1.5rem; color:var(--ink);
+  box-shadow:inset 0 0 0 3px var(--paper); flex-shrink:0;
+}
+.brand__name{font-family:var(--display); font-size:1.05rem; line-height:1; letter-spacing:-0.01em}
+.brand__sub{display:block; font-family:var(--mono); font-size:.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px; font-weight:500}
+.topbar a.back{
+  font-family:var(--mono); font-weight:700; font-size:.9rem;
+  letter-spacing:0.05em; text-transform:uppercase;
+  text-decoration:none; color:var(--ink);
+  padding:13px 22px; border-radius:9px; border:3px solid var(--ink);
+  background:var(--marigold); box-shadow:4px 4px 0 var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease; white-space:nowrap;
+}
+.topbar a.back:hover{background:var(--marigold); color:var(--ink); transform:translate(-1px,-1px); box-shadow:6px 6px 0 var(--ink)}
+.topbar a.back:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink)}
+@media (max-width:560px){.topbar a.back{font-size:.78rem; padding:11px 16px}}
+
+/* Hero */
+.hero{padding:56px 0 36px; position:relative; overflow:hidden}
+.hero__bg{
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 50% at 30% 0%, rgba(245,166,35,0.22), transparent 60%),
+             radial-gradient(ellipse 50% 40% at 90% 80%, rgba(255,111,181,0.18), transparent 70%);
+  pointer-events:none; z-index:-1;
+}
+.hero__eyebrow{
+  font-family:var(--mono); font-weight:700; font-size:.78rem;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--stop);
+  display:inline-flex; align-items:center; gap:.6em; margin-bottom:18px;
+}
+.hero__eyebrow::before{content:""; width:1.6em; height:2px; background:currentColor; display:inline-block}
+.hero h1{transform:rotate(-1deg); transform-origin:left center}
+.hero h1 .accent{color:var(--stop)}
+.hero__sub{
+  font-size:clamp(1.05rem, 1.5vw, 1.25rem); line-height:1.5;
+  color:var(--ink-soft); margin:22px 0 0; max-width:34em;
+  font-variation-settings:"opsz" 24, "SOFT" 60;
+}
+.hero__inner{display:flex; align-items:center; gap:40px}
+.hero__copy{flex:1; min-width:0}
+.hero__portrait{flex-shrink:0; transform:rotate(3deg)}
+.hero__portrait figure{
+  margin:0; background:#fff; padding:14px 14px 16px;
+  border:2px solid var(--ink); border-radius:6px;
+  box-shadow:10px 10px 0 var(--marigold);
+  width:230px;
+}
+.hero__portrait img{width:100%; height:auto; display:block; border-radius:3px}
+.hero__portrait figcaption{
+  font-family:var(--display); font-size:1.05rem; color:var(--ink);
+  text-align:center; margin-top:10px; transform:rotate(-1deg);
+}
+@media (max-width:720px){
+  .hero__inner{flex-direction:column-reverse; align-items:flex-start; gap:28px}
+  .hero__portrait{transform:rotate(-2deg)}
+  .hero__portrait figure{width:180px}
+}
+
+/* Stamps */
+.stamp{
+  display:inline-block;
+  font-family:var(--mono); font-size:.72rem; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase;
+  border:2px solid currentColor; padding:6px 12px; border-radius:4px;
+  transform:rotate(-2deg); margin:6px 8px 0 0;
+}
+.stamp--marigold{color:var(--marigold-deep); background:rgba(245,166,35,0.12)}
+.stamp--park{color:var(--park-deep); background:rgba(42,157,95,0.12)}
+.stamp--stop{color:var(--stop-deep); background:rgba(230,57,70,0.12)}
+.stamp--sky{color:var(--sky-deep); background:rgba(78,137,240,0.12)}
+
+/* The bar / standard callout */
+.bar{
+  background:var(--ink); color:var(--paper);
+  border-radius:16px; padding:28px 32px; margin:8px 0 8px;
+  box-shadow:10px 10px 0 var(--stop);
+}
+.bar h3{color:var(--marigold); margin-bottom:12px}
+.bar p{margin:0; color:rgba(252,243,220,0.92); font-size:1.05rem; line-height:1.5}
+.bar p + p{margin-top:10px}
+
+/* Task sections */
+section.task{padding:30px 0; border-top:2px dashed var(--ink-mute)}
+section.task:first-of-type{border-top:none}
+.task-head{display:flex; align-items:flex-start; gap:22px; margin-bottom:14px}
+@media (max-width:560px){.task-head{gap:14px}}
+.task-num{
+  font-family:var(--display); font-size:clamp(2.6rem, 6vw, 4.2rem); line-height:0.8;
+  color:var(--marigold); -webkit-text-stroke:2px var(--ink); text-stroke:2px var(--ink);
+  display:inline-block; transform:rotate(-4deg);
+  text-shadow:4px 4px 0 var(--ink); flex-shrink:0;
+}
+.task-head__text{flex:1; padding-top:6px}
+.task-head__text h2{margin-bottom:6px}
+.task-head__text p{color:var(--ink-soft); margin:0}
+
+/* Checklist */
+.check{list-style:none; margin:14px 0 0; padding:0}
+.check li{
+  position:relative; padding:10px 12px 10px 44px; margin-bottom:8px;
+  background:#fff; border:2px solid var(--ink); border-radius:10px;
+  box-shadow:4px 4px 0 var(--ink); line-height:1.45;
+}
+.check li::before{
+  content:""; position:absolute; left:12px; top:12px;
+  width:20px; height:20px; border:2px solid var(--ink); border-radius:5px;
+  background:var(--paper);
+}
+.check li strong{color:var(--ink)}
+.check .kids{font-family:var(--mono); font-weight:700; color:var(--stop-deep)}
+
+/* Cast tracker */
+.legend{display:flex; flex-wrap:wrap; gap:10px 18px; margin:6px 0 18px; font-family:var(--mono); font-size:.74rem; font-weight:700; letter-spacing:0.04em}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.dot{width:13px; height:13px; border-radius:50%; border:2px solid var(--ink); display:inline-block}
+.dot--done{background:var(--park)}
+.dot--refresh{background:var(--marigold)}
+.dot--new{background:var(--sky)}
+.dot--todo{background:var(--paper)}
+
+.roster{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:10px; margin:0; padding:0; list-style:none}
+.roster li{
+  display:flex; align-items:center; gap:9px;
+  background:#fff; border:2px solid var(--ink); border-radius:9px;
+  padding:9px 12px; box-shadow:3px 3px 0 var(--ink);
+  font-weight:700; font-size:.98rem;
+}
+
+/* Quick rules / done definition */
+.quickrules{
+  background:var(--ink); color:var(--paper);
+  border-radius:14px; padding:30px 34px; margin:30px 0;
+  box-shadow:10px 10px 0 var(--marigold);
+}
+.quickrules h3{color:var(--marigold); margin-bottom:16px}
+.quickrules ul{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:12px 26px}
+.quickrules li{padding-left:26px; position:relative; font-size:1rem; line-height:1.45}
+.quickrules li::before{content:"✓"; position:absolute; left:0; top:0; color:var(--marigold); font-weight:800}
+
+/* Footer */
+footer{border-top:3px solid var(--ink); background:var(--paper-2); padding:34px 0; margin-top:40px}
+footer h4{margin-bottom:4px}
+footer p{margin:0; color:var(--ink-soft); font-size:.95rem}
+
+@media (max-width:560px){
+  .check li{box-shadow:3px 3px 0 var(--ink)}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="/">
+      <span class="brand__seal" aria-hidden="true">B</span>
+      <span>
+        <span class="brand__name">Roll Smart, Ride Safe</span>
+        <span class="brand__sub">City of Batavia · E-Mobility</span>
+      </span>
+    </a>
+    <a class="back" href="./end-cards-howto.html">📖 Read the How-To →</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <span class="hero__eyebrow">Production punch list · for Jack</span>
+        <h1>Jack's<br><span class="accent">To-Dos</span></h1>
+        <p class="hero__sub">Five things to take the series across the finish line: build the last student videos, give every kid a matching end card, and make sure not a single rider is missing. The how-to and the Claude skills do the heavy lifting — work the list top to bottom.</p>
+        <div style="margin-top:22px">
+          <span class="stamp stamp--sky">pixar-character</span>
+          <span class="stamp stamp--marigold">cta-card</span>
+          <span class="stamp stamp--park">17 kids total</span>
+        </div>
+      </div>
+      <div class="hero__portrait">
+        <figure>
+          <img src="./generated_imgs/pixar-jack.png" alt="Pixar-style portrait of Jack" loading="lazy" />
+          <figcaption>That's you, Jack</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="task" aria-label="The standard">
+  <div class="wrap">
+    <div class="bar">
+      <h3>The bar</h3>
+      <p>Deliver every video <strong>fully complete, start to finish</strong> — before Gary reviews. Assume he's looking at finished work, not a rough pass. If something is half-done or you're unsure, finish it or flag it; don't ship it quietly.</p>
+      <p>When you're done, there is <strong>one polished video for every kid on the cast list</strong>, each with the right end card burned in and named after the student.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TASK 1 ===== -->
+<section class="task" id="t1">
+  <div class="wrap">
+    <div class="task-head">
+      <span class="task-num" aria-hidden="true">1</span>
+      <div class="task-head__text">
+        <h2>Build the three new videos</h2>
+        <p>Three new student clips were added to Kapwing → <strong>City of Batavia → e-mobility kid vids</strong>. Build full videos from them, the same way as the rest of the series.</p>
+      </div>
+    </div>
+    <ul class="check">
+      <li>The three new kids are <span class="kids">Emma</span>, <span class="kids">Bri</span>, and <span class="kids">Sammi</span>. Pull each clip from the Kapwing folder above.</li>
+      <li>Build each video to match the existing series — same structure, pacing, and treatment as the videos already shipped.</li>
+      <li>Each of these three also needs a Pixar character + end card (covered in Task 4) burned in before it's done.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== TASK 2 ===== -->
+<section class="task" id="t2">
+  <div class="wrap">
+    <div class="task-head">
+      <span class="task-num" aria-hidden="true">2</span>
+      <div class="task-head__text">
+        <h2>Rename every video to the real name</h2>
+        <p>All videos should be named after the student in them — no episode numbers or working titles.</p>
+      </div>
+    </div>
+    <ul class="check">
+      <li>Go through <strong>every</strong> video and rename it to the kid's real name (check the cast list below if you're unsure of spelling — Sammy vs. Sammi, Bri, etc.).</li>
+      <li>Keep names consistent with the end-card and character filenames (e.g. <span class="code-inline">hadley</span>, <span class="code-inline">levi</span>) so everything lines up.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== TASK 3 ===== -->
+<section class="task" id="t3">
+  <div class="wrap">
+    <div class="task-head">
+      <span class="task-num" aria-hidden="true">3</span>
+      <div class="task-head__text">
+        <h2>Swap in the three refreshed end cards</h2>
+        <p>New end cards were generated for three kids who already have videos. Drop the new ones into their videos, replacing the old cards.</p>
+      </div>
+    </div>
+    <ul class="check">
+      <li>Update <span class="kids">Levi</span>, <span class="kids">Sammy</span>, and <span class="kids">Tyler</span> with the new cards:</li>
+      <li><span class="code-inline">/generated_imgs/end-card-levi.png</span></li>
+      <li><span class="code-inline">/generated_imgs/end-card-sammy.png</span></li>
+      <li><span class="code-inline">/generated_imgs/end-card-tyler.png</span></li>
+      <li>Confirm the new card actually replaced the old one in each video — watch the ending, don't just trust the file swap.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== TASK 4 ===== -->
+<section class="task" id="t4">
+  <div class="wrap">
+    <div class="task-head">
+      <span class="task-num" aria-hidden="true">4</span>
+      <div class="task-head__text">
+        <h2>Make characters + cards for everyone else, then install them</h2>
+        <p>Every remaining kid needs a Pixar character and an end card generated, then burned into their video. Use the two Claude skills — see the <a href="./end-cards-howto.html">end-card how-to</a>.</p>
+      </div>
+    </div>
+    <ul class="check">
+      <li>For each remaining kid: <span class="code-inline">pixar-character</span> from a screenshot, then <span class="code-inline">cta-card</span> using the video transcript (Claude writes the polaroid line and picks the ordinance tip — you pick the side character + pose).</li>
+      <li><strong>Remaining kids:</strong> <span class="kids">Crew, Benny, Alyssa, Vanessa, Chanel, Colin, Cora, Janaya, Etta</span> — plus <span class="kids">Emma, Bri, Sammi</span> from Task 1.</li>
+      <li>Install each finished end card into that kid's video.</li>
+      <li>Already done — leave alone unless they need a refresh: <span class="code-inline">Hadley</span>, <span class="code-inline">Johnny</span> (and Levi / Sammy / Tyler are handled in Task 3).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== TASK 5 ===== -->
+<section class="task" id="t5">
+  <div class="wrap">
+    <div class="task-head">
+      <span class="task-num" aria-hidden="true">5</span>
+      <div class="task-head__text">
+        <h2>Triple-check everything</h2>
+        <p>Final QC pass. Every video should be complete and as perfect as you can make it, with no kid missing.</p>
+      </div>
+    </div>
+    <ul class="check">
+      <li>Watch <strong>every</strong> video start to finish — the right kid, the right end card, named correctly, ending plays clean.</li>
+      <li>Confirm there is a finished video for <strong>every single kid on the cast list</strong> below — none skipped.</li>
+      <li>Check the end cards against the bar in the how-to: likeness right, CTA reads <span class="code-inline">bataviail.gov →</span>, side-character pose varied, River female.</li>
+      <li>Fix anything that's off before handing it over. Deliver the whole set as complete as possible — Gary reviews last, not mid-way.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== CAST TRACKER ===== -->
+<section class="task" id="roster">
+  <div class="wrap">
+    <div class="task-head">
+      <span class="task-num" aria-hidden="true">★</span>
+      <div class="task-head__text">
+        <h2>The whole cast — nobody gets skipped</h2>
+        <p>All 17 riders. Every one needs a finished, named video with its end card by the time you're done.</p>
+      </div>
+    </div>
+    <div class="legend">
+      <span><span class="dot dot--done"></span> done</span>
+      <span><span class="dot dot--refresh"></span> refresh card (Task 3)</span>
+      <span><span class="dot dot--new"></span> new video (Task 1)</span>
+      <span><span class="dot dot--todo"></span> needs character + card (Task 4)</span>
+    </div>
+    <ul class="roster">
+      <li><span class="dot dot--done"></span> Hadley</li>
+      <li><span class="dot dot--done"></span> Johnny</li>
+      <li><span class="dot dot--refresh"></span> Levi</li>
+      <li><span class="dot dot--refresh"></span> Sammy</li>
+      <li><span class="dot dot--refresh"></span> Tyler</li>
+      <li><span class="dot dot--new"></span> Emma</li>
+      <li><span class="dot dot--new"></span> Bri</li>
+      <li><span class="dot dot--new"></span> Sammi</li>
+      <li><span class="dot dot--todo"></span> Crew</li>
+      <li><span class="dot dot--todo"></span> Benny</li>
+      <li><span class="dot dot--todo"></span> Alyssa</li>
+      <li><span class="dot dot--todo"></span> Vanessa</li>
+      <li><span class="dot dot--todo"></span> Chanel</li>
+      <li><span class="dot dot--todo"></span> Colin</li>
+      <li><span class="dot dot--todo"></span> Cora</li>
+      <li><span class="dot dot--todo"></span> Janaya</li>
+      <li><span class="dot dot--todo"></span> Etta</li>
+    </ul>
+  </div>
+</section>
+
+<section class="task" aria-label="Definition of done">
+  <div class="wrap narrow">
+    <div class="quickrules">
+      <h3>Definition of done</h3>
+      <ul>
+        <li>A video exists for all 17 kids.</li>
+        <li>Each video is named after the student.</li>
+        <li>The right end card is burned into each video.</li>
+        <li>Levi, Sammy, Tyler use the refreshed cards.</li>
+        <li>Emma, Bri, Sammi videos are built and finished.</li>
+        <li>Every card passes the how-to quality bar.</li>
+        <li>You watched each one end to end.</li>
+        <li>It's ready for Gary to review as final.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h4>Roll Smart, Ride Safe</h4>
+    <p>Production punch list for the City of Batavia E-Mobility video series.</p>
+  </div>
+</footer>
+
+</body>
+</html>
