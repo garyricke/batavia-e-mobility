@@ -87,6 +87,21 @@ strong{font-weight:800; color:var(--ink)}
   background:var(--paper-3); transition:background .15s ease;
 }
 .topbar a.back:hover{background:var(--marigold)}
+.topbar .nav-links{display:flex; align-items:center; gap:12px}
+.topbar a.todo{
+  font-family:var(--mono); font-weight:700; font-size:.9rem;
+  letter-spacing:0.05em; text-transform:uppercase;
+  text-decoration:none; color:var(--ink);
+  padding:13px 22px; border-radius:9px; border:3px solid var(--ink);
+  background:var(--marigold); box-shadow:4px 4px 0 var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease; white-space:nowrap;
+}
+.topbar a.todo:hover{color:var(--ink); transform:translate(-1px,-1px); box-shadow:6px 6px 0 var(--ink)}
+.topbar a.todo:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink)}
+@media (max-width:560px){
+  .topbar a.back{display:none}
+  .topbar a.todo{font-size:.78rem; padding:11px 16px}
+}
 
 /* Hero */
 .hero{padding:56px 0 40px; position:relative; overflow:hidden}
@@ -267,7 +282,10 @@ footer ul{list-style:none; padding:0; margin:0}
         <span class="brand__sub">City of Batavia · E-Mobility</span>
       </span>
     </a>
-    <a class="back" href="/">← Back to site</a>
+    <div class="nav-links">
+      <a class="back" href="/">← Back to site</a>
+      <a class="todo" href="./jacks-todos.html">✅ Jack's To-Dos →</a>
+    </div>
   </div>
 </header>
 
