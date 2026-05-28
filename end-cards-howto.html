@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>End Card How-To — Roll Smart, Ride Safe</title>
+<meta name="description" content="Step-by-step instructions for producing 'DID YOU KNOW?' end cards for the Roll Smart, Ride Safe video series." />
+<meta name="theme-color" content="#FCF3DC" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#FCF3DC; --paper-2:#F7E7B8; --paper-3:#FDE6C8;
+  --ink:#14213D; --ink-soft:#2A3A5F; --ink-mute:#6B7390;
+  --marigold:#F5A623; --marigold-deep:#D88A0A;
+  --stop:#E63946; --stop-deep:#B82E3A;
+  --park:#2A9D5F; --park-deep:#1F7B47;
+  --sky:#4E89F0; --sky-deep:#2E68D0;
+  --pink:#FF6FB5; --plum:#7B3F9E;
+
+  --display:'Bagel Fat One', system-ui, sans-serif;
+  --serif:'Fraunces', 'Georgia', serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  --halftone:radial-gradient(circle at 50% 50%, rgba(20,33,61,0.06) 0.6px, transparent 0.7px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-variation-settings:"opsz" 14, "SOFT" 100;
+  font-size:18px; line-height:1.55; overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0;
+  background:var(--halftone), var(--halftone);
+  background-size:6px 6px, 9px 9px; background-position:0 0, 3px 3px;
+  pointer-events:none; z-index:1; mix-blend-mode:multiply; opacity:0.7;
+}
+::selection{background:var(--marigold);color:var(--ink)}
+
+a{color:var(--sky-deep);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--stop)}
+
+h1,h2,h3{font-family:var(--display); font-weight:400; line-height:1; letter-spacing:-0.01em; margin:0; color:var(--ink)}
+h1{font-size:clamp(2.8rem, 8vw, 6rem)}
+h2{font-size:clamp(2rem, 5vw, 3.6rem); letter-spacing:-0.02em}
+h3{font-size:clamp(1.3rem, 2.2vw, 1.8rem)}
+h4{font-family:var(--serif); font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 8px}
+p{margin:0 0 1em}
+strong{font-weight:800; color:var(--ink)}
+
+.mono{font-family:var(--mono); font-feature-settings:"tnum","zero"; font-weight:700}
+
+.wrap{max-width:1100px; margin:0 auto; padding:0 24px; position:relative; z-index:2}
+.narrow{max-width:780px; margin-left:auto; margin-right:auto}
+
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:var(--paper);
+  border-bottom:3px solid var(--ink);
+  box-shadow:0 4px 0 var(--marigold), 0 6px 24px -8px rgba(20,33,61,.18);
+}
+.topbar__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; padding:14px 24px; max-width:1100px; margin:0 auto;
+}
+.brand{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink)}
+.brand__seal{
+  width:46px; height:46px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, var(--marigold), var(--marigold-deep) 70%, var(--ink) 100%);
+  border:2px solid var(--ink); display:grid; place-items:center;
+  font-family:var(--display); font-size:1.5rem; color:var(--ink);
+  box-shadow:inset 0 0 0 3px var(--paper); flex-shrink:0;
+}
+.brand__name{font-family:var(--display); font-size:1.05rem; line-height:1; letter-spacing:-0.01em}
+.brand__sub{display:block; font-family:var(--mono); font-size:.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px; font-weight:500}
+.topbar a.back{
+  font-family:var(--serif); font-weight:700; font-size:.95rem;
+  text-decoration:none; color:var(--ink);
+  padding:8px 14px; border-radius:8px; border:2px solid var(--ink);
+  background:var(--paper-3); transition:background .15s ease;
+}
+.topbar a.back:hover{background:var(--marigold)}
+
+/* Hero */
+.hero{padding:56px 0 40px; position:relative; overflow:hidden}
+.hero__bg{
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 50% at 30% 0%, rgba(245,166,35,0.22), transparent 60%),
+             radial-gradient(ellipse 50% 40% at 90% 80%, rgba(255,111,181,0.18), transparent 70%);
+  pointer-events:none; z-index:-1;
+}
+.hero__eyebrow{
+  font-family:var(--mono); font-weight:700; font-size:.78rem;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--stop);
+  display:inline-flex; align-items:center; gap:.6em; margin-bottom:18px;
+}
+.hero__eyebrow::before{content:""; width:1.6em; height:2px; background:currentColor; display:inline-block}
+.hero h1{transform:rotate(-1deg); transform-origin:left center}
+.hero h1 .accent{color:var(--stop)}
+.hero__sub{
+  font-size:clamp(1.05rem, 1.5vw, 1.25rem); line-height:1.5;
+  color:var(--ink-soft); margin:22px 0 0; max-width:36em;
+  font-variation-settings:"opsz" 24, "SOFT" 60;
+}
+
+/* Stamps */
+.stamp{
+  display:inline-block;
+  font-family:var(--mono); font-size:.72rem; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase;
+  border:2px solid currentColor; padding:6px 12px; border-radius:4px;
+  transform:rotate(-2deg); margin-right:8px;
+}
+.stamp--marigold{color:var(--marigold-deep); background:rgba(245,166,35,0.12)}
+.stamp--park{color:var(--park-deep); background:rgba(42,157,95,0.12)}
+.stamp--stop{color:var(--stop-deep); background:rgba(230,57,70,0.12)}
+.stamp--sky{color:var(--sky-deep); background:rgba(78,137,240,0.12)}
+
+/* Section numbering */
+section.step{padding:48px 0}
+section.step--alt{background:rgba(247,231,184,0.4); border-top:2px dashed var(--ink-mute); border-bottom:2px dashed var(--ink-mute)}
+.section-head{display:flex; align-items:flex-start; gap:24px; margin-bottom:28px}
+@media (max-width:560px){.section-head{flex-direction:column; gap:8px}}
+.section-num{
+  font-family:var(--display); font-size:clamp(3.5rem, 7vw, 5.5rem); line-height:0.9;
+  color:var(--marigold); -webkit-text-stroke:2px var(--ink); text-stroke:2px var(--ink);
+  display:inline-block; transform:rotate(-4deg);
+  text-shadow:4px 4px 0 var(--ink); padding-right:6px; flex-shrink:0;
+}
+.section-head__text{flex:1; padding-top:18px}
+.section-head__text p{color:var(--ink-soft); margin-top:8px}
+
+/* Code blocks for prompts */
+.prompt{
+  background:#FFFDF5; border:2px solid var(--ink); border-radius:10px;
+  padding:18px 22px; margin:18px 0; position:relative;
+  box-shadow:6px 6px 0 var(--ink); font-family:var(--mono);
+  font-size:.85rem; font-weight:500; line-height:1.55; color:var(--ink);
+  white-space:pre-wrap; overflow-x:auto;
+}
+.prompt::before{
+  content:"PROMPT"; position:absolute; top:-12px; left:18px;
+  background:var(--marigold); border:2px solid var(--ink);
+  padding:2px 10px; font-family:var(--mono); font-size:.65rem;
+  font-weight:700; letter-spacing:0.15em; color:var(--ink); border-radius:3px;
+}
+.prompt .var{color:var(--stop-deep); font-weight:700; background:rgba(230,57,70,0.08); padding:1px 4px; border-radius:3px}
+
+.code-inline{font-family:var(--mono); font-size:.88em; background:rgba(20,33,61,0.06); padding:2px 6px; border-radius:4px; font-weight:600}
+
+/* Settings pill */
+.settings{
+  display:inline-flex; gap:10px; flex-wrap:wrap; align-items:center;
+  font-family:var(--mono); font-size:.78rem; font-weight:700;
+  background:var(--ink); color:var(--marigold);
+  padding:8px 14px; border-radius:6px; letter-spacing:0.08em;
+  text-transform:uppercase; margin:6px 0 16px;
+}
+.settings span{display:inline-flex; gap:6px}
+.settings .k{color:rgba(252,243,220,0.65)}
+
+/* Cards grid */
+.cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px; margin:18px 0}
+.card{
+  background:#fff; border:2px solid var(--ink); border-radius:10px;
+  padding:14px; box-shadow:5px 5px 0 var(--ink);
+  display:flex; flex-direction:column; gap:8px;
+}
+.card img{width:100%; height:auto; border-radius:6px; display:block; aspect-ratio:9/16; object-fit:cover}
+.card .card__title{font-family:var(--display); font-size:1.1rem; margin-top:6px}
+.card .card__sub{font-family:var(--mono); font-size:.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft)}
+
+/* Cast figure */
+figure.cast{
+  margin:0; padding:18px; background:#fff;
+  border:2px solid var(--ink); border-radius:10px;
+  box-shadow:8px 8px 0 var(--marigold);
+}
+figure.cast img{width:100%; height:auto; display:block; border-radius:6px}
+figure.cast figcaption{font-family:var(--mono); font-size:.8rem; margin-top:10px; color:var(--ink-soft); letter-spacing:0.04em}
+
+/* Side character grid */
+.sides{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px; margin:18px 0}
+.side{
+  background:#fff; border:2px solid var(--ink); border-radius:10px;
+  overflow:hidden; box-shadow:5px 5px 0 var(--ink);
+  display:flex; flex-direction:column;
+}
+.side img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block; border-bottom:2px solid var(--ink)}
+.side__body{padding:14px 16px 16px}
+.side__name{font-family:var(--display); font-size:1.35rem; margin:0 0 4px}
+.side__role{font-family:var(--mono); font-size:.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--stop); margin-bottom:8px}
+.side__when{font-size:.95rem; color:var(--ink-soft); line-height:1.45}
+
+/* Pose list */
+.poses{
+  background:rgba(245,166,35,0.1); border:2px dashed var(--marigold-deep);
+  border-radius:10px; padding:18px 22px; margin:16px 0;
+}
+.poses h4{color:var(--marigold-deep); margin-bottom:10px}
+.poses ul{margin:0; padding-left:20px; line-height:1.7}
+.poses li{margin-bottom:2px}
+.poses li strong{color:var(--ink)}
+
+/* Watch-out box */
+.watchout{
+  background:rgba(230,57,70,0.08); border-left:5px solid var(--stop);
+  padding:16px 20px; border-radius:0 8px 8px 0; margin:16px 0;
+}
+.watchout h4{color:var(--stop-deep); margin-bottom:6px}
+.watchout ul{margin:0 0 0 4px; padding-left:18px; line-height:1.6}
+.watchout li{margin-bottom:4px}
+
+/* Quick rules card */
+.quickrules{
+  background:var(--ink); color:var(--paper);
+  border-radius:14px; padding:32px 36px; margin:32px 0;
+  box-shadow:10px 10px 0 var(--marigold);
+}
+.quickrules h3{color:var(--marigold); margin-bottom:18px}
+.quickrules ul{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:14px 28px}
+.quickrules li{padding-left:28px; position:relative; font-size:1rem; line-height:1.45}
+.quickrules li::before{
+  content:"✓"; position:absolute; left:0; top:-2px;
+  font-family:var(--display); color:var(--marigold);
+  width:22px; height:22px; display:grid; place-items:center;
+}
+
+/* Footer */
+footer{
+  background:var(--ink); color:var(--paper);
+  padding:48px 0 32px; margin-top:48px;
+  position:relative; z-index:2;
+}
+footer .wrap{display:grid; grid-template-columns:1.2fr 1fr; gap:36px}
+@media (max-width:680px){footer .wrap{grid-template-columns:1fr}}
+footer h4{color:var(--marigold); font-family:var(--display); font-size:1.3rem; text-transform:none; letter-spacing:0; margin-bottom:12px}
+footer p, footer li{font-size:.95rem; color:rgba(252,243,220,0.85); margin:0 0 8px}
+footer a{color:var(--marigold)}
+footer ul{list-style:none; padding:0; margin:0}
+
+/* Print */
+@media print{
+  body::before, .topbar a.back{display:none}
+  body{background:#fff}
+  .prompt{box-shadow:none; break-inside:avoid}
+  .card, .side, figure.cast, .quickrules{box-shadow:none; break-inside:avoid}
+  section.step{padding:24px 0; break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="/">
+      <span class="brand__seal" aria-hidden="true">B</span>
+      <span>
+        <span class="brand__name">Roll Smart, Ride Safe</span>
+        <span class="brand__sub">City of Batavia · E-Mobility</span>
+      </span>
+    </a>
+    <a class="back" href="/">← Back to site</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="hero__eyebrow">Production guide · for the intern</span>
+    <h1>End Card<br><span class="accent">How-To</span></h1>
+    <p class="hero__sub">Every video closes with a "DID YOU KNOW?" end card — a polaroid of the kid plus the matching ordinance fact, with a side character in the lower-left. This page walks you through producing one. About 10 minutes per card once you've done a few.</p>
+    <div style="margin-top:24px">
+      <span class="stamp stamp--marigold">9:16 · 2K</span>
+      <span class="stamp stamp--sky">nano-banana</span>
+      <span class="stamp stamp--park">10 min/card</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STEP 01 — CAST ========== -->
+<section class="step" id="cast">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" aria-hidden="true">01</span>
+      <div class="section-head__text">
+        <h2>Know the cast</h2>
+        <p>Cross-check the kid in the video against this sheet <strong>every time</strong>. Several names look or sound similar — Sammy / Sammi, Bri / Brie. Getting the name right matters more than getting it fast.</p>
+      </div>
+    </div>
+
+    <figure class="cast narrow">
+      <img src="./campaign/cast-reference.png" alt="Cast reference sheet showing every student's face with their name labeled" loading="lazy" />
+      <figcaption><strong>Full cast:</strong> Crew · Johnny · Benny · Alyssa · Vanessa · Chanel · Colin · Cora · Tyler · Janaya · Etta · Sammy · Levi · Hadley · Sammi · Bri · Emma</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ========== STEP 02 — SIDE CHARACTERS ========== -->
+<section class="step step--alt" id="sides">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" aria-hidden="true">02</span>
+      <div class="section-head__text">
+        <h2>Pick the side character</h2>
+        <p>Every end card has one side character as a sticker cut-out in the lower-left. Choose based on the rule the episode teaches.</p>
+      </div>
+    </div>
+
+    <div class="sides">
+      <div class="side">
+        <img src="./generated_imgs/pixar-officer-1.png" alt="Officer Webb" loading="lazy" />
+        <div class="side__body">
+          <h3 class="side__name">Officer Webb</h3>
+          <div class="side__role">Default · Enforcement</div>
+          <p class="side__when">Use for any rule tied to enforcement, citations, traffic law, or a kid getting stopped.</p>
+        </div>
+      </div>
+
+      <div class="side">
+        <img src="./generated_imgs/pixar-webb-river.png" alt="Officer Webb with K9 River" loading="lazy" />
+        <div class="side__body">
+          <h3 class="side__name">Webb &amp; River</h3>
+          <div class="side__role">Required · K9 episodes</div>
+          <p class="side__when"><strong>Required</strong> whenever River appears in the video, even briefly. River is a <strong>female</strong> yellow Lab — never depict her as male.</p>
+        </div>
+      </div>
+
+      <div class="side">
+        <img src="./generated_imgs/pixar-matt.png" alt="Matt the teacher" loading="lazy" />
+        <div class="side__body">
+          <h3 class="side__name">Matt</h3>
+          <div class="side__role">Instructional · Teacher voice</div>
+          <p class="side__when">Use for rules about safe behavior, decision-making, habits — "what would your teacher say" energy, not enforcement.</p>
+        </div>
+      </div>
+
+      <div class="side">
+        <img src="./generated_imgs/pixar-lori.png" alt="Lori, Director of Communications" loading="lazy" />
+        <div class="side__body">
+          <h3 class="side__name">Lori</h3>
+          <div class="side__role">City programs · Parents</div>
+          <p class="side__when">Use for rules about city programs, registration, parent-facing info, community resources, where to find the law.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="poses">
+      <h4>Rotate the pose every time</h4>
+      <p style="margin-top:0;margin-bottom:10px"><strong>Do not</strong> ship two end cards with the same side-character pose. Same face, same uniform, different action. Examples to draw from:</p>
+      <ul>
+        <li><strong>Webb:</strong> pulling sunglasses down · pointing index finger up · hand on hip with badge prominent · dangling jail keys (used on Johnny) · thumbs-up · arms crossed</li>
+        <li><strong>Matt:</strong> pointing at the tip box (used on Tyler) · arms crossed · finger to temple "think about it" · holding a skateboard · open-palm "stop" · two thumbs up</li>
+        <li><strong>Lori:</strong> speaking gesture with raised hand · holding a city brochure · clipboard in hand · open-palm presenting · finger raised "important" · warm wave</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STEP 03 — PIXAR CHARACTER ========== -->
+<section class="step" id="pixar">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" aria-hidden="true">03</span>
+      <div class="section-head__text">
+        <h2>Make the Pixar character</h2>
+        <p>Pause the video on a frame where the kid is facing camera with a clear expression. Crop tight (chest-up). Save as PNG. <strong>Heads up:</strong> macOS Screenshot filenames have a non-breaking space — copy/rename to something like <span class="code-inline">/tmp/kid-screencap.png</span> before tools touch it.</p>
+      </div>
+    </div>
+
+    <p>Run <span class="code-inline">nano-banana edit_image</span> on the screencap. Save the output to <span class="code-inline">generated_imgs/pixar-&lt;name&gt;.png</span> (lowercase).</p>
+
+    <div class="settings">
+      <span><span class="k">image:</span> screencap.png</span>
+      <span><span class="k">aspect:</span> 3:4</span>
+      <span><span class="k">resolution:</span> 2K</span>
+    </div>
+
+    <div class="prompt">Transform this kid into a Pixar / Disney 3D animated character while keeping the EXACT same composition and crop as the source photo: tight chest-up portrait, same camera angle and zoom level. Preserve their real likeness precisely — <span class="var">[HAIR COLOR + STYLE]</span>, <span class="var">[EYE COLOR]</span>, <span class="var">[DISTINCTIVE FEATURES like freckles / braces / glasses]</span>, wearing <span class="var">[WHAT THEY ACTUALLY WORE — t-shirt color, helmet only if they had one on, etc.]</span>. Stylize with the classic Pixar look: large expressive eyes with bright catchlights, soft subsurface skin shading, slightly stylized friendly proportions, clean cinematic 3D rendering, polished feature-film aesthetic. Background: soft-blurred sunny park or schoolyard with green trees and warm natural daylight, shallow depth of field. Vertical 3:4 framing matching the original.</div>
+
+    <div class="watchout">
+      <h4>Watch out for</h4>
+      <ul>
+        <li><strong>Don't add a helmet</strong> if the kid wasn't wearing one in the screen grab. The model auto-adds helmets when prompted carelessly.</li>
+        <li><strong>Don't change the composition.</strong> Match the source crop. Background changes are fine, but if the source is chest-up the Pixar version stays chest-up.</li>
+        <li>Compare against the canonical photoreal-Pixar style (Sammy, Tyler, Hadley). It should look like a Pixar feature still — not cel-shaded, not flat illustration.</li>
+        <li>If features feel off, retry with sharper details. Don't ship a "close enough" portrait — it'll bug the kid forever.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STEP 04 — END CARD ========== -->
+<section class="step step--alt" id="card">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" aria-hidden="true">04</span>
+      <div class="section-head__text">
+        <h2>Bake the end card</h2>
+        <p>Run <span class="code-inline">nano-banana edit_image</span> on the canonical template <span class="code-inline">generated_imgs/end-card-hadley.png</span> with the kid's new Pixar character as a reference image. The template carries the whole visual system — typography, washi tape, stamp, tip box, CTA — so all you're swapping is photo, label, tip text, side character.</p>
+      </div>
+    </div>
+
+    <div class="settings">
+      <span><span class="k">image:</span> end-card-hadley.png</span>
+      <span><span class="k">reference:</span> pixar-&lt;name&gt;.png</span>
+      <span><span class="k">aspect:</span> 9:16</span>
+      <span><span class="k">resolution:</span> 2K</span>
+    </div>
+
+    <div class="prompt">Edit this end card by changing ONLY these elements. Preserve EVERYTHING else exactly — the "— ROLL SMART, RIDE SAFE" header, the navy "DID YOU KNOW?" title with soft orange offset shadow, the dotted + 45-degree diagonal hatched beige background, the pink/yellow washi tape, the polaroid frame, the navy-bordered light-blue tip box styling, the circular distressed "CITY OF BATAVIA · E-MOBILITY" stamp, and the yellow-orange CTA pill button shape with "MORE TIPS AT" label.
+
+Changes:
+
+1) Polaroid PHOTO — replace with the supplied reference image of <span class="var">[NAME]</span>: <span class="var">[BRIEF DESCRIPTION of the kid's Pixar character — hair, clothing, any distinguishing feature]</span>. Crop to chest-up framing centered in the polaroid window.
+
+2) Polaroid handwritten marker label — change to "<span class="var">[NAME]</span> — <span class="var">[SHORT WRY TAG]</span>". Same chunky handwritten marker font, same navy color, same tilt.
+
+3) Tip box body text — replace with:
+   Paragraph 1: "Under Batavia Ord. 2026-010, <span class="var">[the rule for this episode]</span>."
+   Paragraph 2 (bolder takeaway): "<span class="var">[The one-line takeaway that ties to the relief line]</span>."
+
+4) Side character cutout in the lower-left — replace with <span class="var">[Officer Webb / Officer Webb + River / Matt / Lori]</span> in a <span class="var">[DESCRIBE THE POSE — e.g. "arms crossed with a knowing smile"]</span> pose. Keep the same white sticker-outline treatment, same approximate size and position. <span class="var">[If reusing a side character, name the prior pose and explicitly ask for a different one.]</span>
+
+5) CTA URL — keep "bataviail.gov →" exactly as is.</div>
+
+    <h3 style="margin-top:32px;font-size:1.4rem">Writing the label &amp; tip box</h3>
+    <p><strong>Polaroid label format:</strong> <span class="code-inline">[Name] — [short wry tag]</span>. Keep it under ~25 characters total. The voice is <em>relief-reflection</em> — the kid is glad they learned the rule. Not snark, not Judy-style "anyway, try my pancakes" cadence. Look at the shipped cards for the right tone.</p>
+    <p><strong>Tip box:</strong> paragraph 1 cites the rule under <span class="code-inline">Ord. 2026-010</span> in plain language. Paragraph 2 is the kid-friendly takeaway that echoes the relief line from the video. Keep both short — the box auto-wraps and overflow eats into the side character.</p>
+
+    <div class="watchout">
+      <h4>Review every output</h4>
+      <ul>
+        <li><strong>Hair color drift</strong> — the model sometimes darkens blondes. Re-prompt with the hair color emphasized if it shifts.</li>
+        <li><strong>Doubled accessories</strong> — two sets of headphones, two helmets. Specify "ONE set" explicitly if it happens.</li>
+        <li><strong>Garbled text</strong> on badges or the CTA. The pill must read <span class="code-inline">bataviail.gov →</span>. If it shows anything else, retry.</li>
+        <li><strong>Side-character drift</strong> — wrong character or wrong pose. Retry with a sharper prompt and name the character explicitly.</li>
+        <li><strong>River anatomy</strong> — she is female. If the K9 version shows male anatomy, re-prompt: "clean smooth underbody, female dog, no visible anatomy."</li>
+      </ul>
+    </div>
+
+    <p>Save the final to <span class="code-inline">generated_imgs/end-card-&lt;name&gt;.png</span>.</p>
+  </div>
+</section>
+
+<!-- ========== STEP 05 — REFERENCES ========== -->
+<section class="step" id="canonical">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" aria-hidden="true">05</span>
+      <div class="section-head__text">
+        <h2>What "right" looks like</h2>
+        <p>These cards are the established baseline. Compare your output against them for typography, layout, color, and overall polish. If your card doesn't feel like it belongs in this set, don't ship it — retry.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <img src="./generated_imgs/end-card-hadley.png" alt="Hadley end card" loading="lazy" />
+        <div class="card__sub">Template</div>
+        <div class="card__title">Hadley — Parent Trouble</div>
+      </div>
+      <div class="card">
+        <img src="./generated_imgs/end-card-sammy.png" alt="Sammy end card" loading="lazy" />
+        <div class="card__sub">Lori · finger raised</div>
+        <div class="card__title">Sammy — Speed Demon</div>
+      </div>
+      <div class="card">
+        <img src="./generated_imgs/end-card-johnny.png" alt="Johnny end card" loading="lazy" />
+        <div class="card__sub">Webb · jail keys</div>
+        <div class="card__title">Johnny — Mom's Hero</div>
+      </div>
+      <div class="card">
+        <img src="./generated_imgs/end-card-levi.png" alt="Levi end card" loading="lazy" />
+        <div class="card__sub">Webb · glasses on head</div>
+        <div class="card__title">Levi — obey traffic laws</div>
+      </div>
+      <div class="card">
+        <img src="./generated_imgs/end-card-tyler.png" alt="Tyler end card" loading="lazy" />
+        <div class="card__sub">Matt · pointing</div>
+        <div class="card__title">Tyler — helmet hair</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QUICK RULES ========== -->
+<section class="step step--alt">
+  <div class="wrap narrow">
+    <div class="quickrules">
+      <h3>The short list</h3>
+      <ul>
+        <li>Check the cast sheet if you're unsure of a name.</li>
+        <li>Use Webb &amp; River any time River is in the video.</li>
+        <li>River is female — never depict her as male.</li>
+        <li>Vary the side-character pose every single card.</li>
+        <li>Don't add a helmet the kid wasn't wearing.</li>
+        <li>Don't change the composition of the kid's source crop.</li>
+        <li>Confirm the CTA reads <span style="font-family:var(--mono);font-weight:700">bataviail.gov →</span>.</li>
+        <li>Ship the card, then ping Gary for review before the episode goes out.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Roll Smart, Ride Safe</h4>
+      <p>End-card production guide for the City of Batavia E-Mobility video series.</p>
+      <p>Questions? Ping Gary @ Orbis Design.</p>
+    </div>
+    <div>
+      <h4>Related</h4>
+      <ul>
+        <li><a href="/">← Back to main site</a></li>
+        <li><a href="https://www.bataviail.gov/o/police/page/e-mobility-guide" target="_blank" rel="noopener">Official guide on bataviail.gov →</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
