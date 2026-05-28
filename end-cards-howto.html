@@ -407,7 +407,7 @@ footer ul{list-style:none; padding:0; margin:0}
       <span class="section-num" aria-hidden="true">03</span>
       <div class="section-head__text">
         <h2>Make the card</h2>
-        <p>Two skills do the work. <span class="code-inline">pixar-character</span> turns a screenshot of the kid into a Pixar portrait; <span class="code-inline">cta-card</span> drops that portrait into the end-card template with the label, tip, and side character. You just talk to Claude in plain English — it picks the right skill, writes the prompts, and saves the files.</p>
+        <p>Two skills do the work. <span class="code-inline">pixar-character</span> turns a screenshot of the kid into a Pixar portrait; <span class="code-inline">cta-card</span> reads the episode transcript, writes the polaroid line, picks the matching ordinance tip, and drops everything into the end-card template. You just talk to Claude in plain English — it picks the right skill, writes the prompts, and saves the files.</p>
       </div>
     </div>
 
@@ -416,15 +416,14 @@ footer ul{list-style:none; padding:0; margin:0}
     <p><strong>2. Ask for the Pixar portrait.</strong> Drag the screenshot into Claude Code and say:</p>
     <div class="prompt">make a Pixar character from this screenshot of [name]</div>
 
-    <p style="margin-top:14px"><strong>3. Ask for the card.</strong> Once the portrait looks right:</p>
-    <div class="prompt">make the end card for [name]</div>
+    <p style="margin-top:14px"><strong>3. Ask for the card.</strong> Once the portrait looks right, give Claude the name, the video transcript, and the side character + pose you want:</p>
+    <div class="prompt">make the end card for [name]. Side character: [Webb / Webb + River / Matt / Lori] doing [pose]. Transcript: [paste it]</div>
 
-    <p style="margin-top:14px">Claude will ask you for whatever it needs — the label tag, the rule + takeaway, and which side character and pose. Have those ready (see Steps 01–02 and the writing notes below). It saves the finished card to <span class="code-inline">generated_imgs/end-card-&lt;name&gt;.png</span>.</p>
+    <p style="margin-top:14px">Claude reads the transcript to write the polaroid line and pick the best ordinance tip, then <strong>shows you both to approve</strong> before it generates. It saves the finished card to <span class="code-inline">generated_imgs/end-card-&lt;name&gt;.png</span>.</p>
 
-    <h3 style="margin-top:32px;font-size:1.4rem">What you decide (Claude can't)</h3>
-    <p><strong>Polaroid label:</strong> <span class="code-inline">[Name] — [short wry tag]</span>, under ~25 characters. The voice is <em>relief-reflection</em> — the kid is glad they learned the rule. Not snark, not a Judy-style "anyway, try my pancakes" cadence. Look at the shipped cards for the right tone.</p>
-    <p><strong>Tip box:</strong> the rule for the episode (Claude cites it under <span class="code-inline">Ord. 2026-010</span>) plus a kid-friendly takeaway that echoes the relief line from the video. Keep both short.</p>
-    <p><strong>Side character + pose:</strong> pick from Step 02, and give it a fresh pose every card.</p>
+    <h3 style="margin-top:32px;font-size:1.4rem">Who does what</h3>
+    <p><strong>You provide:</strong> the kid's name, the video transcript, and the side character + the pose you want it in. Pick the character from Step 02 — and keep the pose fresh every card.</p>
+    <p><strong>Claude figures out (from the transcript):</strong> the short wry polaroid line (<em>relief-reflection</em> voice — the kid is glad they learned the rule) and the best-matching ordinance tip under <span class="code-inline">Ord. 2026-010</span>, both pointing at the same rule. It shows you its picks so you can approve or tweak them before it generates.</p>
 
     <h3 style="margin-top:32px;font-size:1.4rem">Always eyeball the result</h3>
     <p>The skills review their own output, but you have the final say. Look for these before you ship:</p>
