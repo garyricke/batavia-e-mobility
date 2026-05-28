@@ -7,12 +7,19 @@ Bake the "DID YOU KNOW?" end card (a.k.a. CTA card) that closes each Batavia "Ro
 
 **Prerequisite:** the kid's Pixar portrait must already exist at `generated_imgs/pixar-<name>.png`. If it doesn't, run the **`pixar-character`** skill first.
 
-## Inputs you need
+## Inputs
 
-1. **`generated_imgs/pixar-<name>.png`** — the kid's Pixar portrait (from the `pixar-character` skill).
-2. **The kid's name** and a **short wry tag** for the polaroid label (≤ ~25 chars total, e.g. "Tyler — helmet hair").
-3. **The episode's rule** under `Ord. 2026-010` and the **one-line takeaway** that echoes the kid's relief line. See the `end-card-did-you-know-pairing` and `campaign-voice-relief-reflection` memories for tone — relief-reflection, NOT snark.
-4. **Which side character** appears: Officer Webb / Officer Webb + River / Matt / Lori. Use **Webb + River any time River is in the video**. Pick a **fresh pose** — vary it on every card; if reusing a character, name the prior pose and ask for a different one.
+**The intern gives you:**
+1. **The kid's name.**
+2. **The video transcript** (or script) for the episode.
+3. **Which side character** to use — Officer Webb / Officer Webb + River / Matt / Lori — **and the pose** they want. (Use Webb + River any time River is in the video. Remind them to vary the pose from previous cards.)
+4. **`generated_imgs/pixar-<name>.png`** — the Pixar portrait (from the `pixar-character` skill). If it doesn't exist, run that skill first.
+
+**You (Claude) derive from the transcript:**
+- **The polaroid line** — a short, wry relief-reflection tag for the label, format `[Name] — [tag]`, ≤ ~25 chars total (e.g. "Tyler — helmet hair"). It should reflect what the kid actually learned in *this* episode. Voice is relief-reflection, never snark — see the `campaign-voice-relief-reflection` memory.
+- **The ordinance tip** — read the transcript, identify which rule the episode is about, then pick the **best-matching fact** from the landing page `index.html` (the canonical Ordinance 2026-010 source in this repo). The polaroid line and the tip must cover the **same rule** (see the `end-card-did-you-know-pairing` memory). Write the tip as two parts: paragraph 1 states the rule plainly ("Under Batavia Ord. 2026-010, …"), paragraph 2 is the kid-friendly takeaway that echoes the relief line.
+
+**Before generating, show the intern the polaroid line and the ordinance tip you picked, and confirm the side character + pose, so they can approve or adjust.** Then fill those into the prompt below.
 
 ## Steps
 
@@ -43,10 +50,10 @@ Bake the "DID YOU KNOW?" end card (a.k.a. CTA card) that closes each Batavia "Ro
 3. Save the final to **`generated_imgs/end-card-<name>.png`**.
 4. Review against the watch-outs and the shipped cards, then flag for Gary's review before the episode ships.
 
-## Writing the label & tip box
+## Writing the label & tip well
 
-- **Polaroid label:** `[Name] — [short wry tag]`, ≤ ~25 chars. Voice is relief-reflection (the kid is glad they learned the rule) — not snark, not a Judy-style "anyway, try my pancakes" cadence.
-- **Tip box:** Paragraph 1 cites the rule under `Ord. 2026-010` in plain language. Paragraph 2 is the kid-friendly takeaway that echoes the relief line. Keep both short — the box auto-wraps and overflow eats into the side character.
+- **Polaroid label:** `[Name] — [short wry tag]`, ≤ ~25 chars. Relief-reflection voice (the kid is glad they learned the rule) — not snark, not a Judy-style "anyway, try my pancakes" cadence. Look at the shipped cards for the right tone.
+- **Tip box:** keep both paragraphs short — the box auto-wraps and overflow eats into the side character. Surface the specific ordinance detail (age, distance, wattage, dollar amount), and prioritize the series' highest-risk confusion areas when the transcript supports it: the e-moto ban (>750 W / >20 mph throttle), parent liability, and e-scooter 18+.
 
 ## Watch out for (review every output)
 
