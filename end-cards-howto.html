@@ -278,11 +278,45 @@ footer ul{list-style:none; padding:0; margin:0}
   <div class="wrap">
     <span class="hero__eyebrow">Production guide · for the intern</span>
     <h1>End Card<br><span class="accent">How-To</span></h1>
-    <p class="hero__sub">Every video closes with a "DID YOU KNOW?" end card — a polaroid of the kid plus the matching ordinance fact, with a side character in the lower-left. This page walks you through producing one. About 10 minutes per card once you've done a few.</p>
+    <p class="hero__sub">Every video closes with a "DID YOU KNOW?" end card — a polaroid of the kid plus the matching ordinance fact, with a side character in the lower-left. <strong>Two Claude skills now do the heavy lifting.</strong> Your job is to make a few decisions and check the result. This page covers the setup test and those decisions.</p>
     <div style="margin-top:24px">
-      <span class="stamp stamp--marigold">9:16 · 2K</span>
-      <span class="stamp stamp--sky">nano-banana</span>
-      <span class="stamp stamp--park">10 min/card</span>
+      <span class="stamp stamp--marigold">just ask Claude</span>
+      <span class="stamp stamp--sky">pixar-character</span>
+      <span class="stamp stamp--park">cta-card</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STEP 00 — SETUP TEST ========== -->
+<section class="step step--alt" id="setup">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" aria-hidden="true">00</span>
+      <div class="section-head__text">
+        <h2>First time? Test your setup</h2>
+        <p>The skills make the images by talking to Google's image tool (nano-banana), which needs an API key. Drop the <span class="code-inline">.env</span> file you were given into the project folder, then run the one-time setup — full instructions in <span class="code-inline">SETUP.md</span>:</p>
+      </div>
+    </div>
+
+    <div class="prompt">bash scripts/setup.sh</div>
+
+    <p style="margin-top:14px">Restart Claude Code, then confirm it worked by typing:</p>
+
+    <div class="prompt">check my nano-banana setup</div>
+
+    <p style="margin-top:14px">If it's wired up, Claude reports back something like:</p>
+
+    <div class="settings">
+      <span>Gemini API token is configured and ready to use</span>
+    </div>
+
+    <div class="watchout">
+      <h4>If it says it's NOT configured</h4>
+      <ul>
+        <li>Make sure the <span class="code-inline">.env</span> file is in the project folder and contains a line starting with <span class="code-inline">GEMINI_API_KEY=</span>.</li>
+        <li>Fully quit and reopen Claude Code so it picks up the key.</li>
+        <li>Still stuck? Copy what Claude printed and send it to Gary — don't keep retrying blindly.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -366,97 +400,53 @@ footer ul{list-style:none; padding:0; margin:0}
   </div>
 </section>
 
-<!-- ========== STEP 03 — PIXAR CHARACTER ========== -->
-<section class="step" id="pixar">
+<!-- ========== STEP 03 — MAKE THE CARD ========== -->
+<section class="step" id="make">
   <div class="wrap">
     <div class="section-head">
       <span class="section-num" aria-hidden="true">03</span>
       <div class="section-head__text">
-        <h2>Make the Pixar character</h2>
-        <p>Pause the video on a frame where the kid is facing camera with a clear expression. Crop tight (chest-up). Save as PNG. <strong>Heads up:</strong> macOS Screenshot filenames have a non-breaking space — copy/rename to something like <span class="code-inline">/tmp/kid-screencap.png</span> before tools touch it.</p>
+        <h2>Make the card</h2>
+        <p>Two skills do the work. <span class="code-inline">pixar-character</span> turns a screenshot of the kid into a Pixar portrait; <span class="code-inline">cta-card</span> drops that portrait into the end-card template with the label, tip, and side character. You just talk to Claude in plain English — it picks the right skill, writes the prompts, and saves the files.</p>
       </div>
     </div>
 
-    <p>Run <span class="code-inline">nano-banana edit_image</span> on the screencap. Save the output to <span class="code-inline">generated_imgs/pixar-&lt;name&gt;.png</span> (lowercase).</p>
+    <p><strong>1. Grab a screenshot.</strong> Pause the video on a frame where the kid faces camera with a clear expression and take a chest-up screenshot.</p>
 
-    <div class="settings">
-      <span><span class="k">image:</span> screencap.png</span>
-      <span><span class="k">aspect:</span> 3:4</span>
-      <span><span class="k">resolution:</span> 2K</span>
-    </div>
+    <p><strong>2. Ask for the Pixar portrait.</strong> Drag the screenshot into Claude Code and say:</p>
+    <div class="prompt">make a Pixar character from this screenshot of [name]</div>
 
-    <div class="prompt">Transform this kid into a Pixar / Disney 3D animated character while keeping the EXACT same composition and crop as the source photo: tight chest-up portrait, same camera angle and zoom level. Preserve their real likeness precisely — <span class="var">[HAIR COLOR + STYLE]</span>, <span class="var">[EYE COLOR]</span>, <span class="var">[DISTINCTIVE FEATURES like freckles / braces / glasses]</span>, wearing <span class="var">[WHAT THEY ACTUALLY WORE — t-shirt color, helmet only if they had one on, etc.]</span>. Stylize with the classic Pixar look: large expressive eyes with bright catchlights, soft subsurface skin shading, slightly stylized friendly proportions, clean cinematic 3D rendering, polished feature-film aesthetic. Background: soft-blurred sunny park or schoolyard with green trees and warm natural daylight, shallow depth of field. Vertical 3:4 framing matching the original.</div>
+    <p style="margin-top:14px"><strong>3. Ask for the card.</strong> Once the portrait looks right:</p>
+    <div class="prompt">make the end card for [name]</div>
 
-    <div class="watchout">
-      <h4>Watch out for</h4>
-      <ul>
-        <li><strong>Don't add a helmet</strong> if the kid wasn't wearing one in the screen grab. The model auto-adds helmets when prompted carelessly.</li>
-        <li><strong>Don't change the composition.</strong> Match the source crop. Background changes are fine, but if the source is chest-up the Pixar version stays chest-up.</li>
-        <li>Compare against the canonical photoreal-Pixar style (Sammy, Tyler, Hadley). It should look like a Pixar feature still — not cel-shaded, not flat illustration.</li>
-        <li>If features feel off, retry with sharper details. Don't ship a "close enough" portrait — it'll bug the kid forever.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <p style="margin-top:14px">Claude will ask you for whatever it needs — the label tag, the rule + takeaway, and which side character and pose. Have those ready (see Steps 01–02 and the writing notes below). It saves the finished card to <span class="code-inline">generated_imgs/end-card-&lt;name&gt;.png</span>.</p>
 
-<!-- ========== STEP 04 — END CARD ========== -->
-<section class="step step--alt" id="card">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-num" aria-hidden="true">04</span>
-      <div class="section-head__text">
-        <h2>Bake the end card</h2>
-        <p>Run <span class="code-inline">nano-banana edit_image</span> on the canonical template <span class="code-inline">generated_imgs/end-card-hadley.png</span> with the kid's new Pixar character as a reference image. The template carries the whole visual system — typography, washi tape, stamp, tip box, CTA — so all you're swapping is photo, label, tip text, side character.</p>
-      </div>
-    </div>
+    <h3 style="margin-top:32px;font-size:1.4rem">What you decide (Claude can't)</h3>
+    <p><strong>Polaroid label:</strong> <span class="code-inline">[Name] — [short wry tag]</span>, under ~25 characters. The voice is <em>relief-reflection</em> — the kid is glad they learned the rule. Not snark, not a Judy-style "anyway, try my pancakes" cadence. Look at the shipped cards for the right tone.</p>
+    <p><strong>Tip box:</strong> the rule for the episode (Claude cites it under <span class="code-inline">Ord. 2026-010</span>) plus a kid-friendly takeaway that echoes the relief line from the video. Keep both short.</p>
+    <p><strong>Side character + pose:</strong> pick from Step 02, and give it a fresh pose every card.</p>
 
-    <div class="settings">
-      <span><span class="k">image:</span> end-card-hadley.png</span>
-      <span><span class="k">reference:</span> pixar-&lt;name&gt;.png</span>
-      <span><span class="k">aspect:</span> 9:16</span>
-      <span><span class="k">resolution:</span> 2K</span>
-    </div>
-
-    <div class="prompt">Edit this end card by changing ONLY these elements. Preserve EVERYTHING else exactly — the "— ROLL SMART, RIDE SAFE" header, the navy "DID YOU KNOW?" title with soft orange offset shadow, the dotted + 45-degree diagonal hatched beige background, the pink/yellow washi tape, the polaroid frame, the navy-bordered light-blue tip box styling, the circular distressed "CITY OF BATAVIA · E-MOBILITY" stamp, and the yellow-orange CTA pill button shape with "MORE TIPS AT" label.
-
-Changes:
-
-1) Polaroid PHOTO — replace with the supplied reference image of <span class="var">[NAME]</span>: <span class="var">[BRIEF DESCRIPTION of the kid's Pixar character — hair, clothing, any distinguishing feature]</span>. Crop to chest-up framing centered in the polaroid window.
-
-2) Polaroid handwritten marker label — change to "<span class="var">[NAME]</span> — <span class="var">[SHORT WRY TAG]</span>". Same chunky handwritten marker font, same navy color, same tilt.
-
-3) Tip box body text — replace with:
-   Paragraph 1: "Under Batavia Ord. 2026-010, <span class="var">[the rule for this episode]</span>."
-   Paragraph 2 (bolder takeaway): "<span class="var">[The one-line takeaway that ties to the relief line]</span>."
-
-4) Side character cutout in the lower-left — replace with <span class="var">[Officer Webb / Officer Webb + River / Matt / Lori]</span> in a <span class="var">[DESCRIBE THE POSE — e.g. "arms crossed with a knowing smile"]</span> pose. Keep the same white sticker-outline treatment, same approximate size and position. <span class="var">[If reusing a side character, name the prior pose and explicitly ask for a different one.]</span>
-
-5) CTA URL — keep "bataviail.gov →" exactly as is.</div>
-
-    <h3 style="margin-top:32px;font-size:1.4rem">Writing the label &amp; tip box</h3>
-    <p><strong>Polaroid label format:</strong> <span class="code-inline">[Name] — [short wry tag]</span>. Keep it under ~25 characters total. The voice is <em>relief-reflection</em> — the kid is glad they learned the rule. Not snark, not Judy-style "anyway, try my pancakes" cadence. Look at the shipped cards for the right tone.</p>
-    <p><strong>Tip box:</strong> paragraph 1 cites the rule under <span class="code-inline">Ord. 2026-010</span> in plain language. Paragraph 2 is the kid-friendly takeaway that echoes the relief line from the video. Keep both short — the box auto-wraps and overflow eats into the side character.</p>
-
+    <h3 style="margin-top:32px;font-size:1.4rem">Always eyeball the result</h3>
+    <p>The skills review their own output, but you have the final say. Look for these before you ship:</p>
     <div class="watchout">
       <h4>Review every output</h4>
       <ul>
-        <li><strong>Hair color drift</strong> — the model sometimes darkens blondes. Re-prompt with the hair color emphasized if it shifts.</li>
-        <li><strong>Doubled accessories</strong> — two sets of headphones, two helmets. Specify "ONE set" explicitly if it happens.</li>
-        <li><strong>Garbled text</strong> on badges or the CTA. The pill must read <span class="code-inline">bataviail.gov →</span>. If it shows anything else, retry.</li>
-        <li><strong>Side-character drift</strong> — wrong character or wrong pose. Retry with a sharper prompt and name the character explicitly.</li>
-        <li><strong>River anatomy</strong> — she is female. If the K9 version shows male anatomy, re-prompt: "clean smooth underbody, female dog, no visible anatomy."</li>
+        <li><strong>Invented headwear</strong> — a helmet, hat, or sunglasses the kid wasn't wearing. Ask Claude to remove it.</li>
+        <li><strong>Likeness or hair-color drift</strong> — the model "prettifies" (straightens braces, clears freckles) and sometimes darkens blondes. The kid will notice.</li>
+        <li><strong>Garbled text</strong> — the CTA pill must read <span class="code-inline">bataviail.gov →</span>. If any text is misspelled, retry.</li>
+        <li><strong>Side-character drift</strong> — wrong character, or the same pose as a previous card.</li>
+        <li><strong>River anatomy</strong> — she is female. If the K9 shows male anatomy, ask for "clean smooth underbody, female dog, no visible anatomy."</li>
+        <li><strong>Doesn't belong in the set</strong> — compare against the cards below. If it doesn't feel like it fits, ask Claude to fix it; don't settle for "close enough."</li>
       </ul>
     </div>
-
-    <p>Save the final to <span class="code-inline">generated_imgs/end-card-&lt;name&gt;.png</span>.</p>
   </div>
 </section>
 
-<!-- ========== STEP 05 — REFERENCES ========== -->
+<!-- ========== STEP 04 — REFERENCES ========== -->
 <section class="step" id="canonical">
   <div class="wrap">
     <div class="section-head">
-      <span class="section-num" aria-hidden="true">05</span>
+      <span class="section-num" aria-hidden="true">04</span>
       <div class="section-head__text">
         <h2>What "right" looks like</h2>
         <p>These cards are the established baseline. Compare your output against them for typography, layout, color, and overall polish. If your card doesn't feel like it belongs in this set, don't ship it — retry.</p>
@@ -499,6 +489,7 @@ Changes:
     <div class="quickrules">
       <h3>The short list</h3>
       <ul>
+        <li>First card on a new machine? Run the setup test (Step 00).</li>
         <li>Check the cast sheet if you're unsure of a name.</li>
         <li>Use Webb &amp; River any time River is in the video.</li>
         <li>River is female — never depict her as male.</li>

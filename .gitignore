@@ -4,8 +4,9 @@
 .LSOverride
 ._*
 
-# Claude Code local state
-.claude/
+# Claude Code local state (keep shared skills, ignore machine-specific settings)
+.claude/*
+!.claude/skills/
 
 # Secrets / env
 .env
