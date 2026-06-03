@@ -956,7 +956,7 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   z-index:2;
 }
 .watch-card:hover .watch-card__play, .watch-card:focus-within .watch-card__play{
-  opacity:0;
+  background:linear-gradient(180deg, transparent 45%, rgba(20,33,61,0.65) 100%);
 }
 
 .watch-card__num{
@@ -1641,7 +1641,7 @@ footer ul{list-style:none; padding:0; margin:0}
       </div>
     </div>
 
-    <p class="watch__lede reveal">The whole squad, in their own words. <strong>Hover to preview</strong>, tap any card to watch full-screen with sound, or <strong>download the HQ video</strong> to share on social.</p>
+    <p class="watch__lede reveal">The whole squad, in their own words. <strong>Tap any card</strong> to watch full-screen with sound, or <strong>download the HQ video</strong> to share on social.</p>
 
     <div class="watch__grid">
       <figure class="watch-card reveal" style="--r:-2.2deg">
@@ -1884,7 +1884,7 @@ footer ul{list-style:none; padding:0; margin:0}
       </figure>
     </div>
 
-    <p class="watch__hint reveal">Hover · Tap · Watch · Share</p>
+    <p class="watch__hint reveal">Tap · Watch · Share</p>
   </div>
 </section>
 
@@ -2199,18 +2199,7 @@ footer ul{list-style:none; padding:0; margin:0}
   }
 
   watchCards.forEach(card => {
-    const video = card.querySelector('video');
     const opener = card.querySelector('.watch-card__open') || card;
-    if (supportsHover && !reducedMotion && video){
-      card.addEventListener('mouseenter', () => {
-        const p = video.play();
-        if (p && p.catch) p.catch(() => {});
-      });
-      card.addEventListener('mouseleave', () => {
-        video.pause();
-        try { video.currentTime = 0; } catch(_){}
-      });
-    }
     opener.addEventListener('click', e => {
       e.preventDefault();
       openLightbox(opener.dataset.video, opener);
