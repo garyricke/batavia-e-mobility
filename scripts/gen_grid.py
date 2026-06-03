@@ -15,7 +15,9 @@ for i, slug in enumerate(names):
     name = slug.capitalize()
     full = f"{base}/{ver}/{pid}.mp4"
     prev = f"{base}/q_auto,w_640/{ver}/{pid}.mp4"
-    post = f"{base}/so_0,q_auto,w_640/{ver}/{pid}.jpg"
+    # Poster: a frame ~1.5s before the end, where the end card (Pixar portrait) shows
+    off = max(round((v.get("duration") or 8) - 1.5, 1), 0.1)
+    post = f"{base}/so_{off},q_auto,w_640/{ver}/{pid}.jpg"
     dl   = f"{base}/fl_attachment:{name}-Roll-Smart-Ride-Safe/{ver}/{pid}.mp4"
     num = f"{i+1:02d}"
     r = tilts[i % len(tilts)]
