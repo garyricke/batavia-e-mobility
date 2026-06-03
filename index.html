@@ -1160,9 +1160,10 @@ footer ul{list-style:none; padding:0; margin:0}
    BEHIND THE PROGRAM — crew / credits
    ============================================================ */
 .crew__lede{max-width:680px; margin:0 0 38px; font-size:1.05rem; color:var(--ink-soft)}
-.crew__grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:26px}
-@media (max-width:900px){.crew__grid{grid-template-columns:repeat(2,1fr); gap:22px}}
-@media (max-width:520px){.crew__grid{grid-template-columns:1fr; gap:22px}}
+.crew__grid{display:grid; grid-template-columns:repeat(5, 1fr); gap:20px}
+@media (max-width:1000px){.crew__grid{grid-template-columns:repeat(3,1fr); gap:22px}}
+@media (max-width:640px){.crew__grid{grid-template-columns:repeat(2,1fr); gap:18px}}
+@media (max-width:440px){.crew__grid{grid-template-columns:1fr}}
 .crew-card{
   margin:0; background:#fff;
   border:2px solid var(--ink);
@@ -1989,7 +1990,6 @@ footer ul{list-style:none; padding:0; margin:0}
         <figcaption class="crew-card__body">
           <h3 class="crew-card__name">Matt Myers</h3>
           <p class="crew-card__role">Drama instructor at Rotolo Middle School — he organized the student cast, ran their lines, and helped block every shoot.</p>
-          <a class="crew-card__link" href="https://histage.com/matt-myers" target="_blank" rel="noopener">histage.com →</a>
         </figcaption>
       </figure>
 
@@ -2000,7 +2000,16 @@ footer ul{list-style:none; padding:0; margin:0}
         <figcaption class="crew-card__body">
           <h3 class="crew-card__name">Lori Botterman</h3>
           <p class="crew-card__role">City of Batavia — Director of Communications, and the driving force behind the campaign.</p>
-          <a class="crew-card__link" href="https://www.linkedin.com/in/loribotterman/" target="_blank" rel="noopener">LinkedIn →</a>
+        </figcaption>
+      </figure>
+
+      <figure class="crew-card reveal" style="--accent:var(--plum)">
+        <div class="crew-card__photo">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/c_fill,ar_4:5,g_auto,w_640,f_auto,q_auto/batavia/crew-gary" loading="lazy" decoding="async" alt="Pixar-style cartoon of Gary Ricke, a man with silver swept-back hair and light stubble wearing a light-blue polo shirt." />
+        </div>
+        <figcaption class="crew-card__body">
+          <h3 class="crew-card__name">Gary Ricke</h3>
+          <p class="crew-card__role">Designed the video campaign with Lori, built this landing page, and oversaw Jack's editing internship.</p>
         </figcaption>
       </figure>
 
