@@ -13,8 +13,9 @@
 .env.*
 *.pem
 
-# Cloudinary upload manifest (internal, not for repo)
+# Cloudinary upload manifests (internal, not for repo)
 .cloudinary-uploads.json
+.cloudinary-videos.json
 
 # Node / build artifacts (in case the project ever grows tooling)
 node_modules/
@@ -27,6 +28,22 @@ build/
 campaign/videos/*.mp4
 campaign/videos/*.mov
 campaign/videos/*.webm
+
+# Final squad source videos — uploaded to Cloudinary, never committed.
+assets/0-final-videos/
+
+# Raw source clips & audio dropped into assets/ (hosted on Cloudinary, not committed)
+assets/*.mp4
+assets/*.mov
+assets/*.mp3
+assets/*.m4a
+assets/*.wav
+
+# Nano-banana scratch outputs — keep only canonical pixar-*/end-card-* files
+generated_imgs/edited-*.png
+
+# Local pre-edit page backups (git history is the real backup)
+index-backup-*.html
 
 # Unencrypted source for password-protected pages — must NEVER be committed
 # to the public repo, or the password protection is meaningless.

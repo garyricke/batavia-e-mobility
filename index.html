@@ -19,23 +19,25 @@
    ============================================================ */
 
 :root{
-  /* Risograph-inspired palette */
-  --paper: #FCF3DC;
-  --paper-2: #F7E7B8;
-  --paper-3: #FDE6C8;
-  --ink: #14213D;
-  --ink-soft: #2A3A5F;
-  --ink-mute: #6B7390;
-  --marigold: #F5A623;
-  --marigold-deep: #D88A0A;
-  --stop: #E63946;
+  /* City of Batavia brand palette — navy / cyan / green / cool gray,
+     on a soft "Pixar blue" sky base */
+  --paper: #EAF4FC;     /* page base — light sky */
+  --paper-2: #D4E9F8;
+  --paper-3: #E3F1FC;
+  --ink: #292F7B;       /* Batavia navy (PMS 286) */
+  --ink-soft: #3A4290;
+  --ink-mute: #7E7F81;  /* Batavia cool gray */
+  --marigold: #00ADEF;       /* primary accent → Batavia cyan */
+  --marigold-deep: #0089C4;
+  --stop: #E63946;           /* retained danger/penalty signal */
   --stop-deep: #B82E3A;
-  --park: #2A9D5F;
-  --park-deep: #1F7B47;
-  --sky: #4E89F0;
-  --sky-deep: #2E68D0;
-  --pink: #FF6FB5;
-  --plum: #7B3F9E;
+  --park: #60C560;           /* Batavia green */
+  --park-deep: #3FA63F;
+  --sky: #00ADEF;            /* Batavia cyan */
+  --sky-deep: #0089C4;
+  --pink: #8FD3F0;           /* soft cyan accent (was pink) */
+  --plum: #3A4290;           /* navy accent (was plum) */
+  --cloud: #FFFFFF;
 
   /* Type */
   --display: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
@@ -44,14 +46,16 @@
 
   /* Halftone — subtle dot noise overlay */
   --halftone:
-    radial-gradient(circle at 50% 50%, rgba(20,33,61,0.06) 0.6px, transparent 0.7px);
+    radial-gradient(circle at 50% 50%, rgba(41,47,123,0.05) 0.6px, transparent 0.7px);
 }
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0;
-  background:var(--paper);
+  background:
+    linear-gradient(180deg, #BFE2FA 0%, #DCEFFB 38%, var(--paper) 70%, var(--paper) 100%)
+    fixed;
   color:var(--ink);
   font-family:var(--serif);
   font-variation-settings:"opsz" 14, "SOFT" 100;
@@ -60,19 +64,21 @@ body{
   overflow-x:hidden;
 }
 
-/* Paper texture overlay — gives the page a printed-zine feel */
+/* Pixar-blue sky: soft drifting clouds + faint dot texture */
 body::before{
   content:"";
   position:fixed; inset:0;
   background:
-    var(--halftone),
+    radial-gradient(60% 42% at 14% 12%, rgba(255,255,255,0.95), rgba(255,255,255,0) 60%),
+    radial-gradient(46% 30% at 30% 9%, rgba(255,255,255,0.85), rgba(255,255,255,0) 62%),
+    radial-gradient(52% 36% at 84% 20%, rgba(255,255,255,0.9), rgba(255,255,255,0) 60%),
+    radial-gradient(40% 26% at 68% 16%, rgba(255,255,255,0.8), rgba(255,255,255,0) 64%),
+    radial-gradient(54% 30% at 50% 96%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%),
     var(--halftone);
-  background-size:6px 6px, 9px 9px;
-  background-position:0 0, 3px 3px;
+  background-size:auto,auto,auto,auto,auto,6px 6px;
   pointer-events:none;
-  z-index:1;
-  mix-blend-mode:multiply;
-  opacity:0.7;
+  z-index:0;
+  opacity:0.9;
 }
 
 ::selection{background:var(--marigold);color:var(--ink)}
@@ -112,7 +118,7 @@ strong{font-weight:800; color:var(--ink)}
   transform:rotate(-2deg);
   background:transparent;
 }
-.stamp--marigold{color:var(--marigold-deep); background:rgba(245,166,35,0.12)}
+.stamp--marigold{color:var(--marigold-deep); background:rgba(0,173,239,0.12)}
 .stamp--park{color:var(--park-deep); background:rgba(42,157,95,0.12)}
 .stamp--stop{color:var(--stop-deep); background:rgba(230,57,70,0.12)}
 .stamp--sky{color:var(--sky-deep); background:rgba(78,137,240,0.12)}
@@ -145,7 +151,7 @@ strong{font-weight:800; color:var(--ink)}
 
 /* Wavy hand-drawn underline using SVG bg */
 .underline-wavy{
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'><path d='M0 6 Q 15 0 30 6 T 60 6 T 90 6 T 120 6' fill='none' stroke='%23E63946' stroke-width='3' stroke-linecap='round'/></svg>");
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'><path d='M0 6 Q 15 0 30 6 T 60 6 T 90 6 T 120 6' fill='none' stroke='%2300ADEF' stroke-width='3' stroke-linecap='round'/></svg>");
   background-repeat:no-repeat;
   background-size:100% 8px;
   background-position:0 100%;
@@ -179,7 +185,7 @@ strong{font-weight:800; color:var(--ink)}
   content:"";
   position:absolute;
   width:90px; height:28px;
-  background:rgba(245,166,35,0.55);
+  background:rgba(0,173,239,0.5);
   top:-12px;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
   z-index:3;
@@ -187,7 +193,7 @@ strong{font-weight:800; color:var(--ink)}
   border-right:1px dashed rgba(20,33,61,.18);
 }
 .polaroid::before{left:18px; transform:rotate(-6deg)}
-.polaroid::after{right:18px; transform:rotate(5deg); background:rgba(255,111,181,0.55)}
+.polaroid::after{right:18px; transform:rotate(5deg); background:rgba(96,197,96,0.5)}
 
 /* ============================================================
    NAVIGATION
@@ -197,7 +203,7 @@ strong{font-weight:800; color:var(--ink)}
   position:sticky; top:0; z-index:50;
   background:var(--paper);
   border-bottom:3px solid var(--ink);
-  box-shadow:0 4px 0 var(--marigold), 0 6px 24px -8px rgba(20,33,61,.18);
+  box-shadow:0 4px 0 var(--marigold), 0 6px 24px -8px rgba(41,47,123,.20);
 }
 .topbar__inner{
   display:flex; align-items:center; justify-content:space-between;
@@ -210,14 +216,15 @@ strong{font-weight:800; color:var(--ink)}
   text-decoration:none; color:var(--ink);
 }
 .brand__seal{
-  width:46px; height:46px; border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, var(--marigold), var(--marigold-deep) 70%, var(--ink) 100%);
+  width:48px; height:48px; border-radius:50%;
+  background:#fff;
   border:2px solid var(--ink);
   display:grid; place-items:center;
-  font-family:var(--display); font-size:1.5rem; color:var(--ink);
-  box-shadow:inset 0 0 0 3px var(--paper);
+  box-shadow:0 2px 6px -2px rgba(41,47,123,.35);
   flex-shrink:0;
+  overflow:hidden;
 }
+.brand__seal img{height:40px; width:auto; display:block}
 .brand__name{font-family:var(--display); font-size:1.15rem; line-height:1; letter-spacing:-0.01em}
 .brand__sub{display:block; font-family:var(--mono); font-size:.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px; font-weight:500}
 
@@ -256,9 +263,13 @@ strong{font-weight:800; color:var(--ink)}
 .hero__bg{
   position:absolute; inset:0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(245,166,35,0.25), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 10% 80%, rgba(78,137,240,0.18), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 90% 90%, rgba(255,111,181,0.18), transparent 70%);
+    linear-gradient(180deg, #9FD2F7 0%, #C7E6FB 45%, transparent 85%),
+    radial-gradient(38% 26% at 16% 22%, rgba(255,255,255,0.98), rgba(255,255,255,0) 62%),
+    radial-gradient(30% 20% at 28% 17%, rgba(255,255,255,0.92), rgba(255,255,255,0) 64%),
+    radial-gradient(42% 28% at 82% 16%, rgba(255,255,255,0.96), rgba(255,255,255,0) 60%),
+    radial-gradient(28% 20% at 66% 26%, rgba(255,255,255,0.85), rgba(255,255,255,0) 66%),
+    radial-gradient(ellipse 60% 40% at 12% 86%, rgba(0,173,239,0.14), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 92% 92%, rgba(96,197,96,0.16), transparent 70%);
   pointer-events:none;
   z-index:-1;
 }
@@ -279,7 +290,7 @@ strong{font-weight:800; color:var(--ink)}
 }
 .hero__title .l1,.hero__title .l2{display:block}
 .hero__title .l1{color:var(--ink); transform:rotate(-1.5deg); transform-origin:left center}
-.hero__title .l2{color:var(--stop); transform:rotate(1deg) translateX(8%); margin-top:-.05em}
+.hero__title .l2{color:var(--sky-deep); transform:rotate(1deg) translateX(8%); margin-top:-.05em}
 .hero__title .amp{
   display:inline-block; color:var(--marigold);
   -webkit-text-stroke:3px var(--ink);
@@ -302,15 +313,15 @@ strong{font-weight:800; color:var(--ink)}
   position:absolute;
   bottom:-30px; left:-30px;
   width:160px; height:160px;
-  background:var(--stop);
-  color:var(--paper);
-  border:3px solid var(--ink);
+  background:var(--ink);
+  color:#fff;
+  border:3px solid var(--sky);
   border-radius:50%;
   display:grid; place-items:center; text-align:center;
   font-family:var(--display); font-size:1.6rem; line-height:.95;
   padding:10px;
   transform:rotate(-12deg);
-  box-shadow:6px 6px 0 var(--ink);
+  box-shadow:6px 6px 0 var(--sky-deep);
   z-index:5;
 }
 .hero__badge-line{display:block; font-family:var(--mono); font-size:.6rem; letter-spacing:0.18em; opacity:.85; font-weight:700; margin-top:4px}
@@ -441,8 +452,8 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
 }
 .device-card:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink)}
 .device-card--sky{background:linear-gradient(180deg, #DDECFF 0%, var(--paper) 80%)}
-.device-card--marigold{background:linear-gradient(180deg, #FFE8C2 0%, var(--paper) 80%)}
-.device-card--plum{background:linear-gradient(180deg, #ECDDFF 0%, var(--paper) 80%)}
+.device-card--marigold{background:linear-gradient(180deg, #CDEEFB 0%, var(--paper) 80%)}
+.device-card--plum{background:linear-gradient(180deg, #DCF3DC 0%, var(--paper) 80%)}
 .device-card--stop{background:linear-gradient(180deg, #FFD8DC 0%, var(--paper) 80%)}
 
 .device-card__icon{
@@ -661,7 +672,7 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   display:flex; flex-direction:column;
   min-height:240px;
 }
-.safety-tile:nth-child(3n+1){background:linear-gradient(180deg,#FFE6CC,var(--paper) 70%)}
+.safety-tile:nth-child(3n+1){background:linear-gradient(180deg,#D9EFFB,var(--paper) 70%)}
 .safety-tile:nth-child(3n+2){background:linear-gradient(180deg,#D8F0E0,var(--paper) 70%)}
 .safety-tile:nth-child(3n+3){background:linear-gradient(180deg,#DCE7FF,var(--paper) 70%)}
 
@@ -677,7 +688,7 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
 .safety-tile__ic{font-size:2.4rem; line-height:1; margin-bottom:10px; filter:drop-shadow(2px 2px 0 rgba(20,33,61,.2))}
 .safety-tile h3{font-size:1.4rem; margin-bottom:8px}
 .safety-tile p{font-size:.95rem; color:var(--ink-soft); margin:0}
-.safety-tile p .mono{font-weight:700; color:var(--ink); background:rgba(245,166,35,0.3); padding:0 6px; border-radius:4px}
+.safety-tile p .mono{font-weight:700; color:var(--ink); background:rgba(0,173,239,0.22); padding:0 6px; border-radius:4px}
 
 /* Inset polaroids for safety featured tiles */
 .safety-featured{
@@ -766,10 +777,10 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   position:relative;
   box-shadow:6px 6px 0 var(--ink);
 }
-.rung[data-tier="1"]{padding-left:20px; background:linear-gradient(90deg,#FFF6DE,var(--paper) 60%)}
-.rung[data-tier="2"]{padding-left:40px; background:linear-gradient(90deg,#FFE8C2,var(--paper) 60%)}
-.rung[data-tier="3"]{padding-left:60px; background:linear-gradient(90deg,#FFCEA0,var(--paper) 60%)}
-.rung[data-tier="4"]{padding-left:80px; background:linear-gradient(90deg,#FFB29A,var(--paper) 60%); border-color:var(--stop)}
+.rung[data-tier="1"]{padding-left:20px; background:linear-gradient(90deg,#E8F2FC,var(--paper) 60%)}
+.rung[data-tier="2"]{padding-left:40px; background:linear-gradient(90deg,#CDE8F7,var(--paper) 60%)}
+.rung[data-tier="3"]{padding-left:60px; background:linear-gradient(90deg,#F7C9C2,var(--paper) 60%)}
+.rung[data-tier="4"]{padding-left:80px; background:linear-gradient(90deg,#F4A79C,var(--paper) 60%); border-color:var(--stop)}
 @media (max-width:560px){.rung[data-tier]{padding-left:20px !important}}
 
 .rung__tier{
@@ -837,7 +848,7 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   margin-bottom:36px;
   font-variation-settings:"opsz" 24, "SOFT" 60;
 }
-.watch__lede strong{color:var(--ink); background:rgba(245,166,35,0.35); padding:0 6px; border-radius:4px}
+.watch__lede strong{color:var(--ink); background:rgba(0,173,239,0.28); padding:0 6px; border-radius:4px}
 
 .watch__grid{
   display:grid;
@@ -848,40 +859,33 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
 @media (max-width:520px){.watch__grid{grid-template-columns:1fr; gap:24px}}
 
 .watch-card{
-  appearance:none;
-  font:inherit;
-  color:inherit;
-  text-align:left;
+  margin:0;
   background:#fff;
-  padding:12px 12px 50px;
-  border:0;
+  padding:12px 12px 14px;
   border-radius:3px;
-  cursor:pointer;
   position:relative;
-  display:block;
-  width:100%;
   box-shadow:
     0 1px 0 rgba(0,0,0,.08),
-    0 10px 28px -10px rgba(20,33,61,.28),
-    0 30px 60px -24px rgba(20,33,61,.18);
+    0 10px 28px -10px rgba(41,47,123,.28),
+    0 30px 60px -24px rgba(41,47,123,.18);
   transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
   transform:rotate(var(--r, 0deg));
 }
-.watch-card:nth-child(1){--r:-2.2deg}
-.watch-card:nth-child(2){--r:1.5deg}
-.watch-card:nth-child(3){--r:-1.2deg}
-.watch-card:nth-child(4){--r:2deg}
-.watch-card:nth-child(5){--r:-1.8deg}
-.watch-card:hover, .watch-card:focus-visible{
+.watch-card:hover, .watch-card:focus-within{
   transform:rotate(0deg) translateY(-6px) scale(1.015);
   box-shadow:
     0 1px 0 rgba(0,0,0,.08),
-    0 18px 42px -10px rgba(20,33,61,.4),
-    0 50px 100px -30px rgba(20,33,61,.28);
-  outline:none;
+    0 18px 42px -10px rgba(41,47,123,.4),
+    0 50px 100px -30px rgba(41,47,123,.28);
   z-index:2;
 }
-.watch-card:focus-visible{outline:3px solid var(--marigold); outline-offset:4px}
+.watch-card__open{
+  appearance:none; border:0; background:transparent;
+  margin:0; padding:0; width:100%;
+  font:inherit; color:inherit; text-align:left;
+  display:block; cursor:pointer; position:relative;
+}
+.watch-card__open:focus-visible{outline:3px solid var(--marigold); outline-offset:4px; border-radius:2px}
 
 .watch-card__media{
   position:relative;
@@ -930,7 +934,7 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   border-color:transparent transparent transparent var(--ink);
   z-index:2;
 }
-.watch-card:hover .watch-card__play, .watch-card:focus-visible .watch-card__play{
+.watch-card:hover .watch-card__play, .watch-card:focus-within .watch-card__play{
   opacity:0;
 }
 
@@ -950,27 +954,50 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   transform:rotate(-8deg);
 }
 .watch-card__caption{
-  position:absolute;
-  left:0; right:0;
-  bottom:14px;
-  padding:0 16px;
+  display:block;
+  margin-top:10px;
+  padding:0 6px;
   text-align:center;
   font-family:var(--mono);
   font-size:.8rem;
   letter-spacing:0.04em;
   color:var(--ink-soft);
   font-weight:500;
-  display:block;
 }
 .watch-card__caption strong{
   display:block;
   font-family:var(--display);
   font-weight:400;
-  font-size:1.05rem;
+  font-size:1.15rem;
   letter-spacing:-0.01em;
   color:var(--ink);
-  margin-bottom:2px;
 }
+
+/* Download HQ button (sibling of the play button, inside the card) */
+.watch-card__dl{
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  margin:11px auto 2px;
+  width:calc(100% - 6px);
+  padding:9px 14px;
+  background:var(--ink);
+  color:#fff;
+  border-radius:999px;
+  font-family:var(--mono);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .18s ease, transform .18s ease;
+}
+.watch-card__dl:hover, .watch-card__dl:focus-visible{
+  background:var(--sky-deep);
+  color:#fff;
+  transform:translateY(-1px);
+  outline:none;
+}
+.watch-card__dl:focus-visible{outline:3px solid var(--marigold); outline-offset:3px}
+.watch-card__dl svg{flex:none}
 
 .watch__hint{
   margin-top:32px;
@@ -1118,7 +1145,9 @@ footer ul{list-style:none; padding:0; margin:0}
 <header class="topbar" role="banner">
   <div class="topbar__inner">
     <a href="#top" class="brand" aria-label="Batavia E-Mobility Guide home">
-      <span class="brand__seal" aria-hidden="true">B</span>
+      <span class="brand__seal" aria-hidden="true">
+        <img src="assets/city-of-batavia-logo-mark.svg" alt="" width="30" height="40">
+      </span>
       <span>
         <span class="brand__name">Roll Smart, Ride Safe</span>
         <span class="brand__sub">City of Batavia · Public Safety</span>
@@ -1404,7 +1433,7 @@ footer ul{list-style:none; padding:0; margin:0}
       <span class="section-num" aria-hidden="true">05</span>
       <div>
         <span class="eyebrow">Everybody, Every Time</span>
-        <h2 id="safety-title">Seven safety <span style="color:var(--stop)">superpowers.</span></h2>
+        <h2 id="safety-title">Seven safety <span style="color:var(--sky-deep)">superpowers.</span></h2>
       </div>
     </div>
 
@@ -1469,7 +1498,7 @@ footer ul{list-style:none; padding:0; margin:0}
         <h3>Don't tamper.</h3>
         <p>No removing speed governors. No modifying your device past what the law allows. Factory-fast is plenty fast.</p>
       </div>
-      <div class="safety-tile reveal" style="background:linear-gradient(180deg,#FFE6F2,var(--paper) 70%)">
+      <div class="safety-tile reveal" style="background:linear-gradient(180deg,#DCF3DC,var(--paper) 70%)">
         <span class="safety-tile__num" aria-hidden="true">★</span>
         <span class="safety-tile__ic" aria-hidden="true">👋</span>
         <h3>Bonus: be kind.</h3>
@@ -1587,67 +1616,251 @@ footer ul{list-style:none; padding:0; margin:0}
       <span class="section-num" aria-hidden="true">07</span>
       <div>
         <span class="eyebrow">Caught on Camera</span>
-        <h2 id="watch-title">Watch the <span style="color:var(--stop)">squad.</span></h2>
+        <h2 id="watch-title">Watch the <span style="color:var(--park-deep)">squad.</span></h2>
       </div>
     </div>
 
-    <p class="watch__lede reveal">Five near-misses you don't want to star in. <strong>Hover to preview</strong> a clip. Tap any card to watch full-screen with sound.</p>
+    <p class="watch__lede reveal">The whole squad, in their own words. <strong>Hover to preview</strong>, tap any card to watch full-screen with sound, or <strong>download the HQ video</strong> to share on social.</p>
 
     <div class="watch__grid">
-      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_2_V1_kjbmzt.mp4" aria-label="Watch Squad short 01 with sound">
-        <span class="watch-card__num" aria-hidden="true">01</span>
-        <span class="watch-card__media">
-          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_2_V1_kjbmzt.mp4"
-                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685388/short_2_V1_kjbmzt.jpg"
-                 muted loop playsinline preload="metadata"></video>
-          <span class="watch-card__play" aria-hidden="true"></span>
-        </span>
-        <span class="watch-card__caption"><strong>Caught looking.</strong>Eyes on the road, not the phone.</span>
-      </button>
-
-      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_5_V1_yjre17.mp4" aria-label="Watch Squad short 02 with sound">
-        <span class="watch-card__num" aria-hidden="true">02</span>
-        <span class="watch-card__media">
-          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_5_V1_yjre17.mp4"
-                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685388/short_5_V1_yjre17.jpg"
-                 muted loop playsinline preload="metadata"></video>
-          <span class="watch-card__play" aria-hidden="true"></span>
-        </span>
-        <span class="watch-card__caption"><strong>Sidewalks are for walking.</strong>Find the bike lane.</span>
-      </button>
-
-      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_4_V1_inggqo.mp4" aria-label="Watch Squad short 03 with sound">
-        <span class="watch-card__num" aria-hidden="true">03</span>
-        <span class="watch-card__media">
-          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685388/short_4_V1_inggqo.mp4"
-                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685388/short_4_V1_inggqo.jpg"
-                 muted loop playsinline preload="metadata"></video>
-          <span class="watch-card__play" aria-hidden="true"></span>
-        </span>
-        <span class="watch-card__caption"><strong>Heads up.</strong>One hand on the bars. Always.</span>
-      </button>
-
-      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_3_V1_fq3nfw.mp4" aria-label="Watch Squad short 04 with sound">
-        <span class="watch-card__num" aria-hidden="true">04</span>
-        <span class="watch-card__media">
-          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_3_V1_fq3nfw.mp4"
-                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685387/short_3_V1_fq3nfw.jpg"
-                 muted loop playsinline preload="metadata"></video>
-          <span class="watch-card__play" aria-hidden="true"></span>
-        </span>
-        <span class="watch-card__caption"><strong>Phew.</strong>Glad I learned that one.</span>
-      </button>
-
-      <button type="button" class="watch-card reveal" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_1_V1_rpwqll.mp4" aria-label="Watch Squad short 05 with sound">
-        <span class="watch-card__num" aria-hidden="true">05</span>
-        <span class="watch-card__media">
-          <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778685387/short_1_V1_rpwqll.mp4"
-                 poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0/v1778685387/short_1_V1_rpwqll.jpg"
-                 muted loop playsinline preload="metadata"></video>
-          <span class="watch-card__play" aria-hidden="true"></span>
-        </span>
-        <span class="watch-card__caption"><strong>Don't be the next one.</strong>Roll smart. Ride safe.</span>
-      </button>
+      <figure class="watch-card reveal" style="--r:-2.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499186/batavia/clip-alyssa.mp4" aria-label="Watch Alyssa's video with sound">
+          <span class="watch-card__num" aria-hidden="true">01</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499186/batavia/clip-alyssa.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499186/batavia/clip-alyssa.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Alyssa</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Alyssa-Roll-Smart-Ride-Safe/v1780499186/batavia/clip-alyssa.mp4" aria-label="Download Alyssa's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:1.5deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499402/batavia/clip-benny.mp4" aria-label="Watch Benny's video with sound">
+          <span class="watch-card__num" aria-hidden="true">02</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499402/batavia/clip-benny.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499402/batavia/clip-benny.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Benny</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Benny-Roll-Smart-Ride-Safe/v1780499402/batavia/clip-benny.mp4" aria-label="Download Benny's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-1.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499189/batavia/clip-bri.mp4" aria-label="Watch Bri's video with sound">
+          <span class="watch-card__num" aria-hidden="true">03</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499189/batavia/clip-bri.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499189/batavia/clip-bri.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Bri</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Bri-Roll-Smart-Ride-Safe/v1780499189/batavia/clip-bri.mp4" aria-label="Download Bri's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499191/batavia/clip-chanel.mp4" aria-label="Watch Chanel's video with sound">
+          <span class="watch-card__num" aria-hidden="true">04</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499191/batavia/clip-chanel.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499191/batavia/clip-chanel.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Chanel</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Chanel-Roll-Smart-Ride-Safe/v1780499191/batavia/clip-chanel.mp4" aria-label="Download Chanel's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-1.8deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499196/batavia/clip-colin.mp4" aria-label="Watch Colin's video with sound">
+          <span class="watch-card__num" aria-hidden="true">05</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499196/batavia/clip-colin.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499196/batavia/clip-colin.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Colin</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Colin-Roll-Smart-Ride-Safe/v1780499196/batavia/clip-colin.mp4" aria-label="Download Colin's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:1.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499199/batavia/clip-cora.mp4" aria-label="Watch Cora's video with sound">
+          <span class="watch-card__num" aria-hidden="true">06</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499199/batavia/clip-cora.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499199/batavia/clip-cora.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Cora</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Cora-Roll-Smart-Ride-Safe/v1780499199/batavia/clip-cora.mp4" aria-label="Download Cora's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499201/batavia/clip-crew.mp4" aria-label="Watch Crew's video with sound">
+          <span class="watch-card__num" aria-hidden="true">07</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499201/batavia/clip-crew.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499201/batavia/clip-crew.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Crew</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Crew-Roll-Smart-Ride-Safe/v1780499201/batavia/clip-crew.mp4" aria-label="Download Crew's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:1.8deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499206/batavia/clip-emma.mp4" aria-label="Watch Emma's video with sound">
+          <span class="watch-card__num" aria-hidden="true">08</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499206/batavia/clip-emma.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499206/batavia/clip-emma.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Emma</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Emma-Roll-Smart-Ride-Safe/v1780499206/batavia/clip-emma.mp4" aria-label="Download Emma's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-2.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499209/batavia/clip-etta.mp4" aria-label="Watch Etta's video with sound">
+          <span class="watch-card__num" aria-hidden="true">09</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499209/batavia/clip-etta.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499209/batavia/clip-etta.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Etta</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Etta-Roll-Smart-Ride-Safe/v1780499209/batavia/clip-etta.mp4" aria-label="Download Etta's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:1.5deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499239/batavia/clip-hadley.mp4" aria-label="Watch Hadley's video with sound">
+          <span class="watch-card__num" aria-hidden="true">10</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499239/batavia/clip-hadley.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499239/batavia/clip-hadley.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Hadley</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Hadley-Roll-Smart-Ride-Safe/v1780499239/batavia/clip-hadley.mp4" aria-label="Download Hadley's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-1.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499212/batavia/clip-janaya.mp4" aria-label="Watch Janaya's video with sound">
+          <span class="watch-card__num" aria-hidden="true">11</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499212/batavia/clip-janaya.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499212/batavia/clip-janaya.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Janaya</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Janaya-Roll-Smart-Ride-Safe/v1780499212/batavia/clip-janaya.mp4" aria-label="Download Janaya's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780500463/batavia/clip-johnny.mp4" aria-label="Watch Johnny's video with sound">
+          <span class="watch-card__num" aria-hidden="true">12</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780500463/batavia/clip-johnny.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780500463/batavia/clip-johnny.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Johnny</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Johnny-Roll-Smart-Ride-Safe/v1780500463/batavia/clip-johnny.mp4" aria-label="Download Johnny's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-1.8deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499219/batavia/clip-levi.mp4" aria-label="Watch Levi's video with sound">
+          <span class="watch-card__num" aria-hidden="true">13</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499219/batavia/clip-levi.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499219/batavia/clip-levi.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Levi</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Levi-Roll-Smart-Ride-Safe/v1780499219/batavia/clip-levi.mp4" aria-label="Download Levi's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:1.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499222/batavia/clip-sammi.mp4" aria-label="Watch Sammi's video with sound">
+          <span class="watch-card__num" aria-hidden="true">14</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499222/batavia/clip-sammi.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499222/batavia/clip-sammi.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Sammi</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Sammi-Roll-Smart-Ride-Safe/v1780499222/batavia/clip-sammi.mp4" aria-label="Download Sammi's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499228/batavia/clip-sammy.mp4" aria-label="Watch Sammy's video with sound">
+          <span class="watch-card__num" aria-hidden="true">15</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499228/batavia/clip-sammy.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499228/batavia/clip-sammy.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Sammy</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Sammy-Roll-Smart-Ride-Safe/v1780499228/batavia/clip-sammy.mp4" aria-label="Download Sammy's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:1.8deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499230/batavia/clip-tyler.mp4" aria-label="Watch Tyler's video with sound">
+          <span class="watch-card__num" aria-hidden="true">16</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499230/batavia/clip-tyler.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499230/batavia/clip-tyler.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Tyler</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Tyler-Roll-Smart-Ride-Safe/v1780499230/batavia/clip-tyler.mp4" aria-label="Download Tyler's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
+      <figure class="watch-card reveal" style="--r:-2.2deg">
+        <button type="button" class="watch-card__open" data-video="https://res.cloudinary.com/dsbllwpbh/video/upload/v1780499233/batavia/clip-vanessa.mp4" aria-label="Watch Vanessa's video with sound">
+          <span class="watch-card__num" aria-hidden="true">17</span>
+          <span class="watch-card__media">
+            <video src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto,w_640/v1780499233/batavia/clip-vanessa.mp4" poster="https://res.cloudinary.com/dsbllwpbh/video/upload/so_0,q_auto,w_640/v1780499233/batavia/clip-vanessa.jpg" muted loop playsinline preload="none"></video>
+            <span class="watch-card__play" aria-hidden="true"></span>
+          </span>
+          <span class="watch-card__caption"><strong>Vanessa</strong></span>
+        </button>
+        <a class="watch-card__dl" href="https://res.cloudinary.com/dsbllwpbh/video/upload/fl_attachment:Vanessa-Roll-Smart-Ride-Safe/v1780499233/batavia/clip-vanessa.mp4" aria-label="Download Vanessa's video in high quality to share">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download HQ</span>
+        </a>
+      </figure>
     </div>
 
     <p class="watch__hint reveal">Hover · Tap · Watch · Share</p>
@@ -1964,6 +2177,7 @@ footer ul{list-style:none; padding:0; margin:0}
 
   watchCards.forEach(card => {
     const video = card.querySelector('video');
+    const opener = card.querySelector('.watch-card__open') || card;
     if (supportsHover && !reducedMotion && video){
       card.addEventListener('mouseenter', () => {
         const p = video.play();
@@ -1974,9 +2188,9 @@ footer ul{list-style:none; padding:0; margin:0}
         try { video.currentTime = 0; } catch(_){}
       });
     }
-    card.addEventListener('click', e => {
+    opener.addEventListener('click', e => {
       e.preventDefault();
-      openLightbox(card.dataset.video, card);
+      openLightbox(opener.dataset.video, opener);
     });
   });
 
