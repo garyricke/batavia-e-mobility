@@ -575,12 +575,28 @@ section + section{border-top:2px dashed rgba(20,33,61,.18)}
   margin-top:18px;
   padding:14px 18px;
   background:var(--paper-3);
-  border-left:5px solid var(--stop);
+  border-left:5px solid var(--sky);
   border-radius:0 12px 12px 0;
   font-style:italic;
   font-size:.98rem;
 }
-.rules-card__tip strong{font-style:normal}
+.rules-card__tip strong{font-style:normal; color:var(--ink)}
+
+/* Warning variant — important / age-restricted tips (e.g. 18+ e-scooters) */
+.rules-card__tip--warn{
+  background:rgba(230,57,70,0.10);
+  border:2px solid var(--stop);
+  border-radius:12px;
+  color:var(--stop-deep);
+  font-size:1rem;
+  box-shadow:0 6px 18px -10px rgba(230,57,70,.5);
+}
+.rules-card__tip--warn strong{
+  font-weight:800;
+  color:var(--stop-deep);
+  text-transform:uppercase;
+  letter-spacing:0.03em;
+}
 
 .stat-grid{
   display:grid;
@@ -1978,7 +1994,7 @@ footer ul{list-style:none; padding:0; margin:0}
     {
       id:'scooter-1', family:'scooter', icon:'🛴',
       label:'E-Scooter', cls:'Class 1 · low-speed',
-      speed:'10', age:'18+', helmet:'Under 16',
+      speed:'10', age:'18+', helmet:'Under 16', warn:true,
       sidewalk:true,
       where:'Streets, sidewalks, bike paths and trails, and other designated paths.',
       tip:'You shouldn’t have one of these if you are under 18. Consider asking for some new wheels.'
@@ -1986,7 +2002,7 @@ footer ul{list-style:none; padding:0; margin:0}
     {
       id:'scooter-2', family:'scooter', icon:'🛴',
       label:'E-Scooter', cls:'Class 2 · faster',
-      speed:'20', age:'18+', helmet:'Under 16',
+      speed:'20', age:'18+', helmet:'Under 16', warn:true,
       sidewalk:false,
       where:'Streets, bike paths, and trails. Not on state highways. Not on roads posted above 35 mph.',
       tip:'You shouldn’t have one of these if you are under 18. Consider asking for some new wheels.'
@@ -2040,6 +2056,7 @@ footer ul{list-style:none; padding:0; margin:0}
     cls:      card.querySelector('[data-bind="cls"]'),
     where:    card.querySelector('[data-bind="where"]'),
     tip:      card.querySelector('[data-bind="tip"]'),
+    tipBox:   card.querySelector('.rules-card__tip'),
     speed:    card.querySelector('[data-bind="speed"]'),
     age:      card.querySelector('[data-bind="age"]'),
     sidewalk: card.querySelector('[data-bind="sidewalk"]'),
@@ -2062,6 +2079,7 @@ footer ul{list-style:none; padding:0; margin:0}
       bindings.cls.textContent      = r.cls;
       bindings.where.textContent    = r.where;
       bindings.tip.textContent      = r.tip;
+      bindings.tipBox.classList.toggle('rules-card__tip--warn', !!r.warn);
       bindings.speed.textContent    = r.speed;
       bindings.age.textContent      = r.age;
       bindings.sidewalk.textContent = r.sidewalk ? 'Yes' : 'No';
